@@ -3,504 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canadian Independent Fish Harvesters Federation | CIFHF</title>
+    <title>Canadian Independent Fish Harvesters Federation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --navy: #1B3A5C;
-            --navy-dark: #122840;
-            --navy-light: #2A5580;
-            --orange: #E8732A;
-            --orange-hover: #D4631E;
-            --orange-light: #F5A66A;
-            --white: #FFFFFF;
-            --gray-50: #F8F9FA;
-            --gray-100: #EEF0F2;
-            --gray-200: #D6DAE0;
-            --gray-400: #8E96A0;
-            --gray-600: #5A6270;
-            --gray-800: #2D3340;
-            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-            --radius: 12px;
+            --bg: #ffffff;
+            --text: #444444;
+            --heading: #32373c;
+            --border: #cdcdcd;
+            --accent: #32373c;
+            --accent-light: #5a5e63;
+            --white: #ffffff;
+            --gray-light: #f7f7f7;
+            --gray-mid: #e8e8e8;
+            --link: #21759b;
+            --link-hover: #0073aa;
+            --font: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
-
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font); color: var(--gray-800); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: var(--font); color: var(--text); line-height: 1.7; background: var(--bg); }
 
-        /* ========== NAVIGATION ========== */
+        /* ===== NAV ===== */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(27, 58, 92, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: background 0.3s, box-shadow 0.3s;
+            background: rgba(50,55,60,0.97); backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: box-shadow 0.3s;
         }
-        .nav.scrolled {
-            background: rgba(18, 40, 64, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
+        .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
         .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 24px; height: 72px;
+            max-width: 1140px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; height: 70px;
         }
-        .nav-brand {
-            display: flex; align-items: center; gap: 12px;
-            text-decoration: none; color: var(--white);
+        .nav-logo img { height: 45px; display: block; }
+        .nav-links {
+            list-style: none; display: flex; gap: 4px; margin-left: auto;
         }
-        .nav-logo {
-            width: 42px; height: 42px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--orange), var(--orange-light));
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; font-weight: 800; color: var(--white);
-            box-shadow: 0 2px 8px rgba(232,115,42,0.4);
-        }
-        .nav-title { font-size: 15px; font-weight: 600; letter-spacing: 0.3px; }
-        .nav-title span { display: block; font-size: 11px; font-weight: 400; opacity: 0.7; letter-spacing: 0.5px; text-transform: uppercase; }
-
-        .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
         .nav-links a {
-            color: rgba(255,255,255,0.85); text-decoration: none;
-            font-size: 14px; font-weight: 500; padding: 8px 16px;
-            border-radius: 8px; transition: all 0.2s;
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 14px; font-weight: 600; padding: 8px 14px;
+            border-radius: 4px; transition: all 0.2s; cursor: pointer;
         }
-        .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
-
-        .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff; background: rgba(255,255,255,0.1);
+        }
+        .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: 16px; }
         .lang-toggle {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: var(--white); padding: 6px 14px; border-radius: 20px;
-            font-size: 12px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; font-family: var(--font); letter-spacing: 0.5px;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; padding: 6px 14px; border-radius: 4px;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            font-family: var(--font); transition: all 0.2s;
         }
         .lang-toggle:hover { background: rgba(255,255,255,0.2); }
-        .btn-login {
-            background: var(--orange); color: var(--white); border: none;
-            padding: 8px 20px; border-radius: 8px; font-size: 13px;
-            font-weight: 600; cursor: pointer; transition: all 0.2s;
-            font-family: var(--font);
-        }
-        .btn-login:hover { background: var(--orange-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(232,115,42,0.4); }
-
         .hamburger {
             display: none; background: none; border: none; cursor: pointer;
-            width: 32px; height: 32px; position: relative;
+            width: 32px; height: 24px; position: relative; margin-left: auto;
         }
         .hamburger span {
-            display: block; width: 22px; height: 2px; background: var(--white);
-            position: absolute; left: 5px; transition: all 0.3s;
+            display: block; width: 100%; height: 2px; background: #fff;
+            position: absolute; left: 0; transition: all 0.3s;
         }
-        .hamburger span:nth-child(1) { top: 9px; }
-        .hamburger span:nth-child(2) { top: 15px; }
-        .hamburger span:nth-child(3) { top: 21px; }
-        .hamburger.active span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 11px; }
+        .hamburger span:nth-child(3) { top: 22px; }
+        .hamburger.active span:nth-child(1) { top: 11px; transform: rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
+        .hamburger.active span:nth-child(3) { top: 11px; transform: rotate(-45deg); }
 
-        /* ========== HERO ========== */
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            display: none; position: fixed; top: 70px; left: 0; right: 0;
+            background: var(--heading); padding: 16px 24px;
+            border-bottom: 3px solid var(--border);
+            transform: translateY(-120%); transition: transform 0.3s;
+            z-index: 999;
+        }
+        .mobile-menu.open { transform: translateY(0); }
+        .mobile-menu a {
+            display: block; color: rgba(255,255,255,0.8); text-decoration: none;
+            padding: 12px 0; font-size: 15px; font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+        }
+        .mobile-menu a:hover { color: #fff; }
+        .mobile-actions { display: flex; gap: 10px; margin-top: 16px; }
+
+        /* ===== PAGE SECTIONS ===== */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* ===== HERO ===== */
         .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(165deg, var(--navy-dark) 0%, var(--navy) 40%, var(--navy-light) 100%);
-            position: relative; overflow: hidden; text-align: center; padding: 120px 24px 80px;
+            padding: 140px 24px 80px; text-align: center;
+            background: var(--heading); color: var(--white);
+            position: relative; overflow: hidden;
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse 80% 60% at 20% 80%, rgba(232,115,42,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(42,85,128,0.3) 0%, transparent 60%);
+            background: linear-gradient(135deg, rgba(50,55,60,0.95), rgba(50,55,60,0.8));
         }
-        .hero::after {
-            content: ''; position: absolute; inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(232,115,42,0.15); border: 1px solid rgba(232,115,42,0.3);
-            padding: 8px 20px; border-radius: 30px; margin-bottom: 32px;
-            font-size: 13px; font-weight: 600; color: var(--orange-light);
-            letter-spacing: 0.5px; text-transform: uppercase;
+            display: inline-block; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.3); padding: 6px 20px;
+            border-radius: 30px; margin-bottom: 24px; color: rgba(255,255,255,0.8);
         }
-        .hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
-            color: var(--white); line-height: 1.1; margin-bottom: 24px;
-            letter-spacing: -0.02em;
+            font-size: 2.6rem; font-weight: 700; line-height: 1.2;
+            margin-bottom: 20px; color: var(--white);
         }
-        .hero h1 em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--orange), var(--orange-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero h1 em { font-style: normal; font-weight: 200; }
+        .hero > .hero-content > p {
+            font-size: 1.1rem; line-height: 1.8;
+            color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 32px;
         }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.75);
-            max-width: 600px; margin: 0 auto 40px; line-height: 1.7; font-weight: 300;
-        }
-        .hero-cta {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: var(--orange); color: var(--white);
-            padding: 16px 36px; border-radius: 12px; text-decoration: none;
-            font-size: 16px; font-weight: 600; transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(232,115,42,0.4);
-        }
-        .hero-cta:hover { background: var(--orange-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,115,42,0.5); }
-        .hero-cta svg { width: 18px; height: 18px; transition: transform 0.3s; }
-        .hero-cta:hover svg { transform: translateX(4px); }
-
         .hero-stats {
-            display: flex; justify-content: center; gap: 48px; margin-top: 60px;
-            padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: center; gap: 48px;
+            margin-top: 40px; flex-wrap: wrap;
         }
         .hero-stat { text-align: center; }
-        .hero-stat-num { font-size: 2rem; font-weight: 800; color: var(--orange); }
-        .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+        .hero-stat-num { font-size: 2rem; font-weight: 700; color: #fff; }
+        .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; font-weight: 400; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--white); color: var(--heading);
+            padding: 14px 28px; border-radius: 4px; text-decoration: none;
+            font-weight: 700; font-size: 15px; transition: all 0.2s;
+        }
+        .hero-cta:hover { background: var(--gray-light); transform: translateY(-1px); }
+        .hero-cta svg { width: 18px; height: 18px; }
 
-        /* Wave divider */
-        .wave-divider { position: relative; margin-top: -2px; }
-        .wave-divider svg { display: block; width: 100%; height: auto; }
-
-        /* ========== SECTIONS ========== */
-        .section { padding: 100px 24px; }
-        .section-alt { background: var(--gray-50); }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
+        /* ===== GENERIC SECTION ===== */
+        .section { padding: 80px 24px; }
+        .section-alt { background: var(--gray-light); }
+        .container { max-width: 1140px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 48px; }
         .section-label {
-            font-size: 13px; font-weight: 700; color: var(--orange);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
+            font-size: 12px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--accent-light); margin-bottom: 12px;
         }
         .section-header h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800;
-            color: var(--navy); line-height: 1.2; margin-bottom: 20px;
+            font-size: 2rem; font-weight: 700; color: var(--heading);
+            margin-bottom: 16px; line-height: 1.3;
         }
         .section-header p {
-            font-size: 1.05rem; color: var(--gray-600); max-width: 640px;
-            margin: 0 auto; line-height: 1.7;
+            font-size: 1rem; color: var(--text); max-width: 640px;
+            margin: 0 auto; line-height: 1.8;
         }
 
-        /* ========== ABOUT ========== */
+        /* ===== ABOUT ===== */
         .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
         }
-        .about-text h3 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
-        .about-text p { color: var(--gray-600); margin-bottom: 20px; line-height: 1.8; }
-        .about-features { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+        .about-text h3 {
+            font-size: 1.5rem; font-weight: 700; color: var(--heading);
+            margin-bottom: 16px; line-height: 1.3;
+        }
+        .about-text p { margin-bottom: 16px; line-height: 1.8; }
+        .about-features { list-style: none; margin-top: 24px; }
         .about-features li {
-            display: flex; align-items: flex-start; gap: 14px;
-            font-size: 15px; color: var(--gray-600);
+            display: flex; gap: 14px; padding: 14px 0;
+            border-bottom: 1px solid var(--gray-mid); align-items: flex-start;
         }
+        .about-features li:last-child { border-bottom: none; }
         .about-features li .icon {
-            flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px;
-            background: linear-gradient(135deg, rgba(232,115,42,0.1), rgba(232,115,42,0.05));
-            display: flex; align-items: center; justify-content: center;
-            color: var(--orange); font-size: 16px;
+            flex-shrink: 0; width: 36px; height: 36px; border-radius: 4px;
+            background: var(--gray-light); display: flex; align-items: center;
+            justify-content: center; color: var(--heading); font-size: 16px;
         }
         .about-visual {
-            background: linear-gradient(135deg, var(--navy), var(--navy-light));
-            border-radius: 20px; padding: 48px; position: relative; overflow: hidden;
-            min-height: 400px; display: flex; align-items: center; justify-content: center;
+            background: var(--heading); border-radius: 4px; padding: 48px;
+            min-height: 380px; display: flex; align-items: center;
+            justify-content: center; position: relative;
         }
-        .about-visual::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(232,115,42,0.15), transparent 60%);
-        }
-        .about-visual-content { position: relative; z-index: 1; text-align: center; color: var(--white); }
-        .about-visual-content .big-num { font-size: 5rem; font-weight: 800; color: var(--orange); line-height: 1; }
-        .about-visual-content p { font-size: 1.1rem; opacity: 0.8; margin-top: 12px; }
+        .about-visual-content { text-align: center; color: var(--white); }
+        .about-visual-content .big-num { font-size: 5rem; font-weight: 200; line-height: 1; }
+        .about-visual-content p { font-size: 1rem; opacity: 0.7; margin-top: 12px; }
 
-        /* ========== MEMBERS ========== */
+        /* governance */
+        .governance-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;
+        }
+        .governance-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 4px; padding: 28px; text-align: center;
+        }
+        .governance-card h4 {
+            font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 10px;
+        }
+        .governance-card p { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+        /* ===== OBJECTIVES ===== */
+        .objectives-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+        }
+        .objective-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 4px; padding: 32px;
+        }
+        .objective-card h4 {
+            font-size: 1.1rem; font-weight: 700; color: var(--heading);
+            margin-bottom: 12px;
+        }
+        .objective-card p { font-size: 15px; line-height: 1.8; }
+        .objective-card ul {
+            margin-top: 12px; padding-left: 20px;
+        }
+        .objective-card ul li {
+            font-size: 14px; line-height: 1.8; margin-bottom: 6px;
+        }
+        .policy-highlight {
+            background: var(--heading); color: var(--white); border-radius: 4px;
+            padding: 40px; margin-top: 40px;
+        }
+        .policy-highlight h3 {
+            font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: #fff;
+        }
+        .policy-highlight p { font-size: 15px; line-height: 1.8; opacity: 0.85; margin-bottom: 16px; }
+        .policy-columns {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px;
+        }
+        .policy-col h4 { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: #fff; }
+        .policy-col ul { list-style: none; }
+        .policy-col ul li {
+            font-size: 14px; padding: 6px 0; opacity: 0.85;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-left: 16px; position: relative;
+        }
+        .policy-col ul li::before {
+            content: ''; width: 5px; height: 5px; border-radius: 50%;
+            background: rgba(255,255,255,0.5); position: absolute; left: 0; top: 13px;
+        }
+
+        /* ===== MEMBERS ===== */
         .members-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;
         }
         .province-card {
-            background: var(--white); border-radius: var(--radius);
-            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
-            overflow: hidden; transition: all 0.3s;
+            background: var(--white); border-radius: 4px;
+            border: 1px solid var(--border); overflow: hidden; transition: box-shadow 0.3s;
         }
-        .province-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .province-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .province-header {
-            background: linear-gradient(135deg, var(--navy), var(--navy-light));
-            padding: 20px 24px; display: flex; align-items: center; gap: 12px;
+            background: var(--heading); padding: 16px 20px;
+            display: flex; align-items: center; gap: 10px;
         }
         .province-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            background: rgba(255,255,255,0.15); display: flex;
-            align-items: center; justify-content: center;
-            font-size: 18px;
+            width: 32px; height: 32px; border-radius: 4px;
+            background: rgba(255,255,255,0.12); display: flex;
+            align-items: center; justify-content: center; font-size: 15px;
         }
-        .province-header h3 { color: var(--white); font-size: 1rem; font-weight: 700; }
+        .province-header h3 { color: var(--white); font-size: 0.95rem; font-weight: 700; }
         .province-header .count {
-            margin-left: auto; background: rgba(232,115,42,0.2);
-            color: var(--orange-light); padding: 4px 12px; border-radius: 20px;
-            font-size: 12px; font-weight: 600;
+            margin-left: auto; background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.8); padding: 3px 10px; border-radius: 3px;
+            font-size: 11px; font-weight: 600;
         }
-        .province-members { padding: 16px 24px; }
+        .province-members { padding: 12px 20px; }
         .member-item {
-            padding: 12px 0; border-bottom: 1px solid var(--gray-100);
+            padding: 10px 0; border-bottom: 1px solid var(--gray-mid);
             display: flex; align-items: center; gap: 10px;
         }
         .member-item:last-child { border-bottom: none; }
-        .member-dot {
-            width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-        }
-        .member-dot.has-link { background: var(--orange); }
-        .member-dot.no-link { background: var(--gray-200); }
+        .member-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+        .member-dot.has-link { background: var(--link); }
+        .member-dot.no-link { background: var(--border); }
         .member-item a {
-            color: var(--navy); text-decoration: none; font-size: 14px;
-            font-weight: 500; transition: color 0.2s;
+            color: var(--link); text-decoration: none; font-size: 14px;
+            font-weight: 400; transition: color 0.2s;
         }
-        .member-item a:hover { color: var(--orange); }
-        .member-item span.member-name {
-            color: var(--gray-600); font-size: 14px;
-        }
-        .member-link-icon { margin-left: auto; color: var(--orange); font-size: 12px; opacity: 0; transition: opacity 0.2s; }
+        .member-item a:hover { color: var(--link-hover); text-decoration: underline; }
+        .member-item span.member-name { color: var(--text); font-size: 14px; }
+        .member-link-icon { margin-left: auto; color: var(--link); font-size: 11px; opacity: 0; transition: opacity 0.2s; }
         .member-item:hover .member-link-icon { opacity: 1; }
 
-        /* ========== COMMUNITY IMPACT ========== */
+        /* ===== EXECUTIVE ===== */
+        .exec-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 28px;
+        }
+        .exec-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 4px; text-align: center; overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .exec-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .exec-photo {
+            width: 100%; height: 260px; background: var(--gray-light);
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .exec-photo svg { width: 80px; height: 80px; fill: var(--border); }
+        .exec-card-body { padding: 20px; }
+        .exec-card-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+        .exec-card-body p { font-size: 14px; color: var(--text); }
+
+        /* ===== IMPACT ===== */
         .impact-stats-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-            margin-bottom: 60px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px;
         }
         .impact-stat-card {
-            background: var(--white); border-radius: var(--radius);
-            padding: 32px 24px; text-align: center;
-            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
-            transition: all 0.3s; position: relative; overflow: hidden;
+            background: var(--white); border-radius: 4px; padding: 28px 20px;
+            text-align: center; border: 1px solid var(--border);
+            transition: box-shadow 0.3s; position: relative;
         }
         .impact-stat-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: var(--heading);
         }
-        .impact-stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .impact-stat-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .impact-stat-num {
-            font-size: 2.5rem; font-weight: 800; color: var(--orange);
+            font-size: 2.2rem; font-weight: 700; color: var(--heading);
             line-height: 1; margin-bottom: 8px;
         }
-        .impact-stat-label {
-            font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px;
-        }
-        .impact-stat-desc {
-            font-size: 13px; color: var(--gray-400); line-height: 1.5;
-        }
+        .impact-stat-label { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+        .impact-stat-desc { font-size: 13px; color: var(--text); line-height: 1.5; }
+
         .impact-narrative {
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
         }
         .impact-narrative-text h3 {
-            font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+            font-size: 1.4rem; font-weight: 700; color: var(--heading); margin-bottom: 16px;
         }
-        .impact-narrative-text p {
-            color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;
-        }
+        .impact-narrative-text p { line-height: 1.8; margin-bottom: 16px; }
         .impact-report-card {
-            background: linear-gradient(135deg, var(--navy), var(--navy-light));
-            border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
+            background: var(--heading); border-radius: 4px; padding: 36px;
         }
-        .impact-report-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(232,115,42,0.15), transparent 60%);
-        }
-        .impact-report-card-inner { position: relative; z-index: 1; color: var(--white); }
-        .impact-report-card-inner h4 {
-            font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
-        }
-        .impact-report-card-inner p {
-            font-size: 14px; opacity: 0.8; line-height: 1.7; margin-bottom: 24px;
-        }
-        .impact-report-card-inner ul {
-            list-style: none; margin-bottom: 24px;
-        }
+        .impact-report-card-inner { color: var(--white); }
+        .impact-report-card-inner h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+        .impact-report-card-inner p { font-size: 14px; opacity: 0.8; line-height: 1.7; margin-bottom: 20px; }
+        .impact-report-card-inner ul { list-style: none; margin-bottom: 20px; }
         .impact-report-card-inner ul li {
-            font-size: 14px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex; align-items: center; gap: 10px; opacity: 0.9;
+            font-size: 14px; padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 10px; opacity: 0.85;
         }
         .impact-report-card-inner ul li:last-child { border-bottom: none; }
         .impact-report-card-inner ul li::before {
-            content: ''; width: 6px; height: 6px; border-radius: 50%;
-            background: var(--orange); flex-shrink: 0;
+            content: ''; width: 5px; height: 5px; border-radius: 50%;
+            background: rgba(255,255,255,0.5); flex-shrink: 0;
         }
         .impact-cta-link {
             display: inline-flex; align-items: center; gap: 8px;
-            color: var(--orange-light); text-decoration: none;
-            font-size: 14px; font-weight: 600; transition: all 0.2s;
+            color: rgba(255,255,255,0.7); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: color 0.2s;
         }
-        .impact-cta-link:hover { color: var(--orange); }
+        .impact-cta-link:hover { color: #fff; }
         .impact-cta-link svg { width: 16px; height: 16px; transition: transform 0.3s; }
         .impact-cta-link:hover svg { transform: translateX(4px); }
 
-        /* ========== NEWS ========== */
-        .news-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-        }
+        /* ===== NEWS ===== */
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .news-card {
-            background: var(--white); border-radius: var(--radius);
-            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
-            overflow: hidden; transition: all 0.3s;
-            display: flex; flex-direction: column;
+            background: var(--white); border-radius: 4px;
+            border: 1px solid var(--border); overflow: hidden;
+            transition: box-shadow 0.3s; display: flex; flex-direction: column;
         }
-        .news-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .news-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .news-card-image {
-            height: 180px; position: relative; overflow: hidden;
-            background: linear-gradient(135deg, var(--navy), var(--navy-light));
-        }
-        .news-card-image::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(232,115,42,0.12), transparent 60%);
+            height: 170px; position: relative; overflow: hidden;
+            background: var(--heading);
         }
         .news-card-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 48px; opacity: 0.2;
+            font-size: 44px; opacity: 0.15;
         }
         .news-card-tag {
-            position: absolute; top: 16px; left: 16px;
-            background: var(--orange); color: var(--white);
-            padding: 4px 12px; border-radius: 20px;
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.5px;
+            position: absolute; top: 14px; left: 14px;
+            background: var(--accent); color: var(--white);
+            padding: 3px 10px; border-radius: 3px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .news-card-body {
-            padding: 24px; flex: 1; display: flex; flex-direction: column;
-        }
+        .news-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
         .news-card-date {
-            font-size: 12px; font-weight: 600; color: var(--orange);
-            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+            font-size: 12px; font-weight: 600; color: var(--accent-light);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
         }
         .news-card-body h3 {
-            font-size: 1.1rem; font-weight: 700; color: var(--navy);
-            line-height: 1.3; margin-bottom: 12px;
+            font-size: 1.05rem; font-weight: 700; color: var(--heading);
+            line-height: 1.3; margin-bottom: 10px;
         }
         .news-card-body p {
-            font-size: 14px; color: var(--gray-600); line-height: 1.7;
-            margin-bottom: 20px; flex: 1;
+            font-size: 14px; color: var(--text); line-height: 1.7;
+            margin-bottom: 16px; flex: 1;
         }
         .news-read-more {
             display: inline-flex; align-items: center; gap: 6px;
-            color: var(--orange); text-decoration: none;
-            font-size: 14px; font-weight: 600; transition: all 0.2s;
+            color: var(--link); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: color 0.2s;
         }
-        .news-read-more:hover { color: var(--orange-hover); }
+        .news-read-more:hover { color: var(--link-hover); }
         .news-read-more svg { width: 14px; height: 14px; transition: transform 0.3s; }
         .news-read-more:hover svg { transform: translateX(4px); }
 
-        /* ========== CONTACT ========== */
-        .contact-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-        }
-        .contact-info h3 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
-        .contact-detail {
-            display: flex; gap: 16px; margin-bottom: 24px;
-        }
+        /* ===== CONTACT ===== */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+        .contact-info h3 { font-size: 1.3rem; font-weight: 700; color: var(--heading); margin-bottom: 20px; }
+        .contact-detail { display: flex; gap: 14px; margin-bottom: 20px; }
         .contact-detail .icon-circle {
-            width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
-            background: linear-gradient(135deg, rgba(232,115,42,0.1), rgba(232,115,42,0.05));
-            display: flex; align-items: center; justify-content: center;
-            color: var(--orange); font-size: 18px;
+            width: 42px; height: 42px; border-radius: 4px; flex-shrink: 0;
+            background: var(--gray-light); display: flex; align-items: center;
+            justify-content: center; color: var(--heading); font-size: 16px;
         }
-        .contact-detail h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-        .contact-detail p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
-
+        .contact-detail h4 { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 3px; }
+        .contact-detail p { font-size: 14px; color: var(--text); line-height: 1.6; }
         .contact-form {
-            background: var(--white); border-radius: var(--radius);
-            padding: 40px; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100);
+            background: var(--white); border-radius: 4px; padding: 32px;
+            border: 1px solid var(--border);
         }
-        .contact-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-        .form-group { margin-bottom: 16px; }
+        .contact-form h3 { font-size: 1.1rem; font-weight: 700; color: var(--heading); margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-group { margin-bottom: 14px; }
         .form-group label {
             display: block; font-size: 13px; font-weight: 600;
-            color: var(--gray-600); margin-bottom: 6px;
+            color: var(--text); margin-bottom: 5px;
         }
         .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px 16px; border: 1px solid var(--gray-200);
-            border-radius: 10px; font-size: 14px; font-family: var(--font);
-            color: var(--gray-800); transition: border-color 0.2s, box-shadow 0.2s;
-            background: var(--gray-50);
+            width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+            border-radius: 4px; font-size: 14px; font-family: var(--font);
+            color: var(--text); transition: border-color 0.2s; background: var(--white);
         }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            outline: none; border-color: var(--orange);
-            box-shadow: 0 0 0 3px rgba(232,115,42,0.1); background: var(--white);
+            outline: none; border-color: var(--heading);
         }
-        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group textarea { resize: vertical; min-height: 100px; }
         .btn-submit {
-            width: 100%; padding: 14px; background: var(--orange); color: var(--white);
-            border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; font-family: var(--font);
+            width: 100%; padding: 12px; background: var(--heading); color: var(--white);
+            border: none; border-radius: 4px; font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: background 0.2s; font-family: var(--font);
         }
-        .btn-submit:hover { background: var(--orange-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(232,115,42,0.3); }
+        .btn-submit:hover { background: var(--accent-light); }
 
-        /* ========== FOOTER ========== */
+        /* ===== FOOTER ===== */
         .footer {
-            background: var(--navy-dark); padding: 60px 24px 30px; color: rgba(255,255,255,0.6);
+            background: var(--heading); padding: 48px 24px 24px; color: rgba(255,255,255,0.6);
         }
         .footer-inner {
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1140px; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center;
-            padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .footer-brand { color: var(--white); font-size: 16px; font-weight: 700; }
-        .footer-brand span { color: var(--orange); }
-        .footer-links { display: flex; gap: 24px; list-style: none; }
-        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--orange); }
+        .footer-logo img { height: 40px; display: block; }
+        .footer-links { display: flex; gap: 20px; list-style: none; }
+        .footer-links a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 13px; transition: color 0.2s; cursor: pointer;
+        }
+        .footer-links a:hover { color: #fff; }
         .footer-bottom {
-            max-width: 1200px; margin: 0 auto;
-            text-align: center; padding-top: 24px; font-size: 13px;
+            max-width: 1140px; margin: 0 auto;
+            text-align: center; padding-top: 20px; font-size: 12px;
         }
-        .footer-bottom a { color: var(--orange); text-decoration: none; }
+        .footer-bottom a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        .footer-bottom a:hover { color: #fff; }
 
-        /* ========== ANIMATIONS ========== */
+        /* ===== FADE-IN ===== */
         .fade-in {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         .fade-in-delay-1 { transition-delay: 0.1s; }
         .fade-in-delay-2 { transition-delay: 0.2s; }
         .fade-in-delay-3 { transition-delay: 0.3s; }
 
-        /* ========== MOBILE MENU ========== */
-        .mobile-menu {
-            display: none; position: fixed; top: 72px; left: 0; right: 0;
-            background: var(--navy-dark); padding: 24px;
-            border-bottom: 2px solid var(--orange);
-            transform: translateY(-100%); transition: transform 0.3s;
-            z-index: 999;
-        }
-        .mobile-menu.open { transform: translateY(0); }
-        .mobile-menu a {
-            display: block; color: rgba(255,255,255,0.85); text-decoration: none;
-            padding: 14px 0; font-size: 16px; font-weight: 500;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .mobile-menu a:hover { color: var(--orange); }
-        .mobile-actions { display: flex; gap: 12px; margin-top: 20px; }
-
-        /* ========== RESPONSIVE ========== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .nav-links, .nav-actions { display: none; }
             .hamburger { display: block; }
             .mobile-menu { display: block; }
-            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-grid, .contact-grid, .impact-narrative, .policy-columns { grid-template-columns: 1fr; }
             .members-grid { grid-template-columns: 1fr; }
-            .hero-stats { flex-direction: column; gap: 24px; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .governance-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 24px; }
             .form-row { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
             .impact-stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .impact-narrative { grid-template-columns: 1fr; }
             .news-grid { grid-template-columns: 1fr; }
+            .exec-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 1.8rem; }
             .section { padding: 60px 16px; }
             .impact-stats-grid { grid-template-columns: 1fr; }
+            .exec-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -509,20 +499,21 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="#" class="nav-brand">
-                <div class="nav-logo">F</div>
-                <div class="nav-title">CIFHF<span>Fish Harvesters Federation</span></div>
+            <a href="#" class="nav-logo" onclick="navigateTo('home'); return false;">
+                <img src="https://fed-fede.ca/wp-content/uploads/2015/10/logo_en.png" alt="Canadian Independent Fish Harvesters Federation">
             </a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#members">Members</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="navigateTo('home')" data-page="home" data-i18n="navHome">Home</a></li>
+                <li><a onclick="navigateTo('about')" data-page="about" data-i18n="navAbout">About Us</a></li>
+                <li><a onclick="navigateTo('objectives')" data-page="objectives" data-i18n="navObjectives">Objectives</a></li>
+                <li><a onclick="navigateTo('members')" data-page="members" data-i18n="navMembers">Our Members</a></li>
+                <li><a onclick="navigateTo('executive')" data-page="executive" data-i18n="navExec">Executive</a></li>
+                <li><a onclick="navigateTo('impact')" data-page="impact" data-i18n="navImpact">Impact</a></li>
+                <li><a onclick="navigateTo('news')" data-page="news" data-i18n="navNews">News</a></li>
+                <li><a onclick="navigateTo('contact')" data-page="contact" data-i18n="navContact">Contact</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="lang-toggle" id="langToggle">EN | FR</button>
-                <button class="btn-login">Member Login</button>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -532,462 +523,714 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#about" onclick="closeMobile()">About</a>
-        <a href="#members" onclick="closeMobile()">Members</a>
-        <a href="#impact" onclick="closeMobile()">Impact</a>
-        <a href="#news" onclick="closeMobile()">News</a>
-        <a href="#contact" onclick="closeMobile()">Contact</a>
+        <a onclick="navigateTo('home'); closeMobile();" data-i18n="navHome">Home</a>
+        <a onclick="navigateTo('about'); closeMobile();" data-i18n="navAbout">About Us</a>
+        <a onclick="navigateTo('objectives'); closeMobile();" data-i18n="navObjectives">Objectives</a>
+        <a onclick="navigateTo('members'); closeMobile();" data-i18n="navMembers">Our Members</a>
+        <a onclick="navigateTo('executive'); closeMobile();" data-i18n="navExec">Executive</a>
+        <a onclick="navigateTo('impact'); closeMobile();" data-i18n="navImpact">Impact</a>
+        <a onclick="navigateTo('news'); closeMobile();" data-i18n="navNews">News</a>
+        <a onclick="navigateTo('contact'); closeMobile();" data-i18n="navContact">Contact</a>
         <div class="mobile-actions">
-            <button class="lang-toggle">EN | FR</button>
-            <button class="btn-login">Member Login</button>
+            <button class="lang-toggle" id="langToggleMobile">EN | FR</button>
         </div>
     </div>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-badge">United Voice for Independent Harvesters</div>
-            <h1>Canadian Independent<br><em>Fish Harvesters</em><br>Federation</h1>
-            <p>Advocating for the rights, sustainability, and prosperity of independent fish harvesters across every coast and waterway of Canada.</p>
-            <a href="#members" class="hero-cta">
-                Meet Our Members
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-num">25</div>
-                    <div class="hero-stat-label">Member Organizations</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">7</div>
-                    <div class="hero-stat-label">Provinces</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">Coast to Coast</div>
-                    <div class="hero-stat-label" style="font-size:12px">Pacific &bull; Atlantic &bull; Arctic</div>
+    <!-- ==================== HOME ==================== -->
+    <div class="page active" id="page-home">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="heroBadge">United Voice for Independent Harvesters</div>
+                <h1 data-i18n="heroTitle">Canadian Independent<br><em>Fish Harvesters</em><br>Federation</h1>
+                <p data-i18n="heroSub">Advocating for the rights, sustainability, and prosperity of independent fish harvesters across every coast and waterway of Canada.</p>
+                <a href="#" class="hero-cta" onclick="navigateTo('members'); return false;">
+                    <span data-i18n="heroCta">Meet Our Members</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">14,000+</div>
+                        <div class="hero-stat-label" data-i18n="heroStat1">Licensed Owner-Operators</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">$1.4B+</div>
+                        <div class="hero-stat-label" data-i18n="heroStat2">Landed Value</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">30,000+</div>
+                        <div class="hero-stat-label" data-i18n="heroStat3">Jobs Supported</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,0 L0,0 Z" fill="#1B3A5C"/>
-        </svg>
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label" data-i18n="homeMissionLabel">Our Mission</div>
+                    <h2 data-i18n="homeMissionTitle">Protecting Canada's Independent Fishing Heritage</h2>
+                    <p data-i18n="homeMissionSub">The Canadian Independent Fish Harvesters Federation brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text fade-in">
+                        <h3 data-i18n="homeAboutH3">A National Voice Since 1995</h3>
+                        <p data-i18n="homeAboutP1">The Canadian Independent Fish Harvesters Federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada's fishing heritage for generations.</p>
+                        <p data-i18n="homeAboutP2">Our federation represents member organizations across six provinces, from the Pacific to the Atlantic, united in the belief that those who fish should control their licences and their livelihoods.</p>
+                    </div>
+                    <div class="about-visual fade-in fade-in-delay-2">
+                        <div class="about-visual-content">
+                            <div class="big-num">6</div>
+                            <p data-i18n="homeVisualP">Provinces represented<br>coast to coast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text fade-in">
-                    <div class="section-label" data-i18n="aboutLabel">About Us</div>
-                    <h3>Protecting the Livelihood of Canada's Independent Fish Harvesters</h3>
-                    <p>The Canadian Independent Fish Harvesters Federation (CIFHF) brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.</p>
-                    <p>Our federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada's fishing heritage for generations.</p>
-                    <ul class="about-features">
-                        <li>
-                            <div class="icon">&#9878;</div>
-                            <div><strong>Policy Advocacy</strong> &mdash; Representing harvesters in federal fisheries policy, trade negotiations, and regulatory consultations.</div>
-                        </li>
-                        <li>
-                            <div class="icon">&#9733;</div>
-                            <div><strong>Sustainability Leadership</strong> &mdash; Championing science-based management and responsible harvesting practices.</div>
-                        </li>
-                        <li>
-                            <div class="icon">&#10003;</div>
-                            <div><strong>Member Support</strong> &mdash; Connecting regional associations with shared resources, expertise, and a unified national platform.</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="about-visual fade-in fade-in-delay-2">
-                    <div class="about-visual-content">
-                        <div class="big-num">1971</div>
-                        <p>Decades of advocacy for<br>independent fish harvesters</p>
-                    </div>
-                </div>
+    <!-- ==================== ABOUT US ==================== -->
+    <div class="page" id="page-about">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="aboutBadge">Who We Are</div>
+                <h1 data-i18n="aboutHeroTitle">About the Canadian Independent<br><em>Fish Harvesters Federation</em></h1>
+                <p data-i18n="aboutHeroSub">A national federation representing independent fish harvesters from coast to coast, advocating for sustainable fisheries and the communities that depend on them.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Members -->
-    <section class="section section-alt" id="members">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label" data-i18n="membersLabel">Our Members</div>
-                <h2 data-i18n="membersTitle">Member Organizations by Province</h2>
-                <p>Our federation unites fishing associations from coast to coast, each representing the independent harvesters of their region.</p>
-            </div>
-
-            <div class="members-grid">
-
-                <!-- British Columbia -->
-                <div class="province-card fade-in">
-                    <div class="province-header">
-                        <div class="province-icon">&#127754;</div>
-                        <h3>British Columbia</h3>
-                        <span class="count">4 members</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Area A Crab Fishermen's Association</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">BC Longline Fishermen's Association</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">BC Shrimp Trawl Association</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">United Fishermen and Allied Workers Union</span></div>
-                    </div>
-                </div>
-
-                <!-- New Brunswick -->
-                <div class="province-card fade-in fade-in-delay-1">
-                    <div class="province-header">
-                        <div class="province-icon">&#9875;</div>
-                        <h3>New Brunswick</h3>
-                        <span class="count">4 members</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://www.frapp.org" target="_blank" rel="noopener">F&eacute;d&eacute;ration r&eacute;gionale acadienne des p&ecirc;cheurs professionnels</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://www.fundynorth.org/" target="_blank" rel="noopener">Fundy North Fishermen's Association</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://gmfa.nb.ca/" target="_blank" rel="noopener">Grand Manan Fishermen's Association</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-dot no-link"></span>
-                            <span class="member-name">Union des p&ecirc;cheurs des Maritimes / Maritime Fishermen's Union</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Newfoundland and Labrador -->
-                <div class="province-card fade-in fade-in-delay-2">
-                    <div class="province-header">
-                        <div class="province-icon">&#127907;</div>
-                        <h3>Newfoundland &amp; Labrador</h3>
-                        <span class="count">1 member</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://www.ffaw.nf.ca/" target="_blank" rel="noopener">Fish, Food and Allied Workers</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nova Scotia -->
-                <div class="province-card fade-in">
-                    <div class="province-header">
-                        <div class="province-icon">&#128674;</div>
-                        <h3>Nova Scotia</h3>
-                        <span class="count">7 members</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://capebretonlobster.com" target="_blank" rel="noopener">Cape Breton Fish Harvesters Association</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Eastern Shore Fishermen's Protective Association</span></div>
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://www.gcifa.ns.ca/Home.html" target="_blank" rel="noopener">Guysborough Co Inshore Fishermen's Association</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Halifax West Fishermen's Association</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Maritime Fishermen's Union Local 9</span></div>
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://mfu6.com/" target="_blank" rel="noopener">Maritime Fishermen's Union Local 6</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Richmond County Fishermen's Association</span></div>
-                    </div>
-                </div>
-
-                <!-- Prince Edward Island -->
-                <div class="province-card fade-in fade-in-delay-1">
-                    <div class="province-header">
-                        <div class="province-icon">&#127965;</div>
-                        <h3>Prince Edward Island</h3>
-                        <span class="count">1 member</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Prince Edward Island Fishermen's Association</span></div>
-                    </div>
-                </div>
-
-                <!-- Quebec - Alliance -->
-                <div class="province-card fade-in fade-in-delay-2">
-                    <div class="province-header">
-                        <div class="province-icon">&#9881;</div>
-                        <h3>Qu&eacute;bec <small style="opacity:0.7;font-weight:400">&mdash; Alliance des P&ecirc;cheurs</small></h3>
-                        <span class="count">3 members</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des p&ecirc;cheurs propri&eacute;taires des &Icirc;les de la Madeleine</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Regroupement des p&ecirc;cheurs professionnels de la moyenne et haute C&ocirc;te-Nord</span></div>
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://monhomard.ca" target="_blank" rel="noopener">Regroupement des P&ecirc;cheurs Professionnels du Sud de la Gasp&eacute;sie</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quebec - Federation -->
-                <div class="province-card fade-in fade-in-delay-3">
-                    <div class="province-header">
-                        <div class="province-icon">&#9881;</div>
-                        <h3>Qu&eacute;bec <small style="opacity:0.7;font-weight:400">&mdash; F&eacute;d. semi-hauturiers</small></h3>
-                        <span class="count">3 members</span>
-                    </div>
-                    <div class="province-members">
-                        <div class="member-item">
-                            <span class="member-dot has-link"></span>
-                            <a href="http://www.acpgaspesie.com" target="_blank" rel="noopener">Association des capitaines propri&eacute;taires de la Gasp&eacute;sie</a>
-                            <span class="member-link-icon">&#8599;</span>
-                        </div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des crabiers des &Icirc;les de la Madeleine</span></div>
-                        <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des crabiers gasp&eacute;siens</span></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Impact -->
-    <section class="section" id="impact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label" data-i18n="impactLabel">Community Impact</div>
-                <h2 data-i18n="impactTitle">Holding Government Accountable for Our Fisheries</h2>
-                <p data-i18n="impactSub">Our FOPO Accountability Report tracks parliamentary recommendations and measures real progress on the issues that matter most to independent fish harvesters.</p>
-            </div>
-
-            <div class="impact-stats-grid">
-                <div class="impact-stat-card fade-in">
-                    <div class="impact-stat-num">51</div>
-                    <div class="impact-stat-label" data-i18n="impactStat1Label">Recommendations Tracked</div>
-                    <div class="impact-stat-desc" data-i18n="impactStat1Desc">Across FOPO Reports 13 and 16</div>
-                </div>
-                <div class="impact-stat-card fade-in fade-in-delay-1">
-                    <div class="impact-stat-num">70</div>
-                    <div class="impact-stat-label" data-i18n="impactStat2Label">Witnesses Heard</div>
-                    <div class="impact-stat-desc" data-i18n="impactStat2Desc">Testified across both parliamentary studies</div>
-                </div>
-                <div class="impact-stat-card fade-in fade-in-delay-2">
-                    <div class="impact-stat-num">1,400+</div>
-                    <div class="impact-stat-label" data-i18n="impactStat3Label">Illegal Harvesting Reports</div>
-                    <div class="impact-stat-desc" data-i18n="impactStat3Desc">Elver poaching incidents reported in 2023</div>
-                </div>
-                <div class="impact-stat-card fade-in fade-in-delay-3">
-                    <div class="impact-stat-num">30/180</div>
-                    <div class="impact-stat-label" data-i18n="impactStat4Label">Fish Stocks Rebuilding</div>
-                    <div class="impact-stat-desc" data-i18n="impactStat4Desc">Only 30 of 180 stocks listed for rebuilding plans</div>
-                </div>
-            </div>
-
-            <div class="impact-narrative">
-                <div class="impact-narrative-text fade-in">
-                    <h3 data-i18n="impactNarrTitle">Why Accountability Matters</h3>
-                    <p data-i18n="impactNarrP1">When Parliament's Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.</p>
-                    <p data-i18n="impactNarrP2">Our Accountability Report grades the federal government's response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain&mdash;particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.</p>
-                    <p data-i18n="impactNarrP3">With $789.6 million spent on NIHB medical transportation in 2023&ndash;24 and only a fraction directed at fisheries enforcement, the allocation of federal resources demands scrutiny. Independent harvesters deserve a government that matches its commitments with action.</p>
-                </div>
-                <div class="impact-report-card fade-in fade-in-delay-2">
-                    <div class="impact-report-card-inner">
-                        <h4 data-i18n="impactReportTitle">FOPO Accountability Report</h4>
-                        <p data-i18n="impactReportDesc">Key areas covered in our comprehensive review of parliamentary recommendations:</p>
-                        <ul>
-                            <li data-i18n="impactReportItem1">Owner-operator policy protections</li>
-                            <li data-i18n="impactReportItem2">IUU fishing and enforcement gaps</li>
-                            <li data-i18n="impactReportItem3">Fish stock rebuilding commitments</li>
-                            <li data-i18n="impactReportItem4">Elver fishery crisis response</li>
-                            <li data-i18n="impactReportItem5">Federal resource allocation</li>
+        <section class="section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text fade-in">
+                        <div class="section-label" data-i18n="aboutMissionLabel">Mission &amp; Identity</div>
+                        <h3 data-i18n="aboutMissionH3">Protecting the Livelihood of Canada's Independent Fish Harvesters</h3>
+                        <p data-i18n="aboutMissionP1">The Canadian Independent Fish Harvesters Federation (CIFHF) brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.</p>
+                        <p data-i18n="aboutMissionP2">Our federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada's fishing heritage for generations.</p>
+                        <ul class="about-features">
+                            <li>
+                                <div class="icon">&#9878;</div>
+                                <div><strong data-i18n="aboutFeat1T">Policy Advocacy</strong> &mdash; <span data-i18n="aboutFeat1D">Representing harvesters in federal fisheries policy, trade negotiations, and regulatory consultations.</span></div>
+                            </li>
+                            <li>
+                                <div class="icon">&#9733;</div>
+                                <div><strong data-i18n="aboutFeat2T">Sustainability Leadership</strong> &mdash; <span data-i18n="aboutFeat2D">Championing science-based management and responsible harvesting practices.</span></div>
+                            </li>
+                            <li>
+                                <div class="icon">&#10003;</div>
+                                <div><strong data-i18n="aboutFeat3T">Member Support</strong> &mdash; <span data-i18n="aboutFeat3D">Connecting regional associations with shared resources, expertise, and a unified national platform.</span></div>
+                            </li>
                         </ul>
-                        <a href="#" class="impact-cta-link" data-i18n="impactReportCta">
-                            Read the Full Report
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News -->
-    <section class="section section-alt" id="news">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label" data-i18n="newsLabel">News</div>
-                <h2 data-i18n="newsTitle">Latest Updates</h2>
-                <p data-i18n="newsSub">Stay informed on the issues, policy developments, and advocacy work shaping the future of independent fish harvesting in Canada.</p>
-            </div>
-
-            <div class="news-grid">
-                <!-- News Item 1 -->
-                <div class="news-card fade-in">
-                    <div class="news-card-image">
-                        <div class="news-card-icon">&#128220;</div>
-                        <span class="news-card-tag" data-i18n="newsTag1">Report</span>
-                    </div>
-                    <div class="news-card-body">
-                        <div class="news-card-date" data-i18n="newsDate1">February 2026</div>
-                        <h3 data-i18n="newsHeadline1">FOPO Accountability Report Published</h3>
-                        <p data-i18n="newsExcerpt1">The Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.</p>
-                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
-                            Read More
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- News Item 2 -->
-                <div class="news-card fade-in fade-in-delay-1">
-                    <div class="news-card-image">
-                        <div class="news-card-icon">&#127907;</div>
-                        <span class="news-card-tag" data-i18n="newsTag2">Policy</span>
-                    </div>
-                    <div class="news-card-body">
-                        <div class="news-card-date" data-i18n="newsDate2">January 2025</div>
-                        <h3 data-i18n="newsHeadline2">2025 Elver Fishery Reopens with New Regulations</h3>
-                        <p data-i18n="newsExcerpt2">After two years of closures due to rampant illegal harvesting, DFO announces the reopening of the elver fishery with strengthened oversight, new traceability requirements, and enhanced enforcement measures.</p>
-                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
-                            Read More
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- News Item 3 -->
-                <div class="news-card fade-in fade-in-delay-2">
-                    <div class="news-card-image">
-                        <div class="news-card-icon">&#9878;</div>
-                        <span class="news-card-tag" data-i18n="newsTag3">Advocacy</span>
-                    </div>
-                    <div class="news-card-body">
-                        <div class="news-card-date" data-i18n="newsDate3">December 2024</div>
-                        <h3 data-i18n="newsHeadline3">Owner-Operator Protections: What Pacific Harvesters Need to Know</h3>
-                        <p data-i18n="newsExcerpt3">As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how CIFHF is advocating for fair access.</p>
-                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
-                            Read More
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label" data-i18n="contactLabel">Get In Touch</div>
-                <h2 data-i18n="contactTitle">Contact the Federation</h2>
-                <p>Whether you're a member organization, prospective member, or stakeholder, we welcome your inquiry.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info fade-in">
-                    <h3>Federation Office</h3>
-                    <div class="contact-detail">
-                        <div class="icon-circle">&#128205;</div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>Shediac, New Brunswick<br>Canada</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="icon-circle">&#9993;</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@cifhf.ca</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="icon-circle">&#128222;</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>(506) 555-0100</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="icon-circle">&#128338;</div>
-                        <div>
-                            <h4>Office Hours</h4>
-                            <p>Monday &ndash; Friday<br>9:00 AM &ndash; 5:00 PM AST</p>
+                    <div class="about-visual fade-in fade-in-delay-2">
+                        <div class="about-visual-content">
+                            <div class="big-num">1995</div>
+                            <p data-i18n="aboutVisualP">Decades of advocacy for<br>independent fish harvesters</p>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form fade-in fade-in-delay-2">
-                    <h3>Send Us a Message</h3>
-                    <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will be in touch shortly.');">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" placeholder="Your first name">
+
+                <div class="section-header fade-in" style="margin-top: 80px;">
+                    <div class="section-label" data-i18n="aboutEconLabel">Economic Impact</div>
+                    <h2 data-i18n="aboutEconH2">An Industry That Sustains Communities</h2>
+                </div>
+                <div class="impact-stats-grid">
+                    <div class="impact-stat-card fade-in">
+                        <div class="impact-stat-num">14,000+</div>
+                        <div class="impact-stat-label" data-i18n="aboutEcon1L">Licensed Owners</div>
+                        <div class="impact-stat-desc" data-i18n="aboutEcon1D">Independent fish harvesting licence holders across Canada</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-1">
+                        <div class="impact-stat-num">$1.4B+</div>
+                        <div class="impact-stat-label" data-i18n="aboutEcon2L">Landed Value</div>
+                        <div class="impact-stat-desc" data-i18n="aboutEcon2D">Annual value of fish and seafood landed by independent harvesters</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-2">
+                        <div class="impact-stat-num">30,000+</div>
+                        <div class="impact-stat-label" data-i18n="aboutEcon3L">Jobs Supported</div>
+                        <div class="impact-stat-desc" data-i18n="aboutEcon3D">Direct and indirect employment in coastal communities</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-3">
+                        <div class="impact-stat-num">6</div>
+                        <div class="impact-stat-label" data-i18n="aboutEcon4L">Provinces</div>
+                        <div class="impact-stat-desc" data-i18n="aboutEcon4D">From British Columbia to Newfoundland and Labrador</div>
+                    </div>
+                </div>
+
+                <div class="section-header fade-in" style="margin-top: 40px;">
+                    <div class="section-label" data-i18n="aboutGovLabel">Governance</div>
+                    <h2 data-i18n="aboutGovH2">How the Federation Is Governed</h2>
+                    <p data-i18n="aboutGovP">The Canadian Independent Fish Harvesters Federation operates through a democratic governance structure that ensures every member organization has a voice.</p>
+                </div>
+                <div class="governance-grid">
+                    <div class="governance-card fade-in">
+                        <h4 data-i18n="aboutGov1T">Constitutional Convention</h4>
+                        <p data-i18n="aboutGov1D">The supreme governing body of the Federation. All member organizations send delegates to set policy direction and amend the constitution.</p>
+                    </div>
+                    <div class="governance-card fade-in fade-in-delay-1">
+                        <h4 data-i18n="aboutGov2T">Board of Directors</h4>
+                        <p data-i18n="aboutGov2D">Elected representatives from each member organization who oversee operations, approve budgets, and guide strategic direction between conventions.</p>
+                    </div>
+                    <div class="governance-card fade-in fade-in-delay-2">
+                        <h4 data-i18n="aboutGov3T">Executive Committee</h4>
+                        <p data-i18n="aboutGov3D">The President and executive members who manage day-to-day operations, represent the Federation publicly, and execute Board decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== OBJECTIVES ==================== -->
+    <div class="page" id="page-objectives">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="objBadge">What We Stand For</div>
+                <h1 data-i18n="objHeroTitle">Objectives of the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
+                <p data-i18n="objHeroSub">Protecting independent harvesters, preserving coastal communities, and ensuring sustainable fisheries for future generations.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label" data-i18n="objCoreLabel">Core Objectives</div>
+                    <h2 data-i18n="objCoreH2">Shared Vision, Unified Action</h2>
+                </div>
+                <div class="objectives-grid">
+                    <div class="objective-card fade-in">
+                        <h4 data-i18n="obj1T">Primary Mission</h4>
+                        <p data-i18n="obj1P">To protect and advance the interests of independent, owner-operator fish harvesters across Canada through coordinated national advocacy, policy development, and representation before federal government bodies.</p>
+                    </div>
+                    <div class="objective-card fade-in fade-in-delay-1">
+                        <h4 data-i18n="obj2T">Shared Vision</h4>
+                        <p data-i18n="obj2P">A Canadian fishing industry where independent harvesters control their licences and enterprises, coastal communities thrive, and marine resources are managed sustainably for the benefit of current and future generations.</p>
+                    </div>
+                    <div class="objective-card fade-in fade-in-delay-2">
+                        <h4 data-i18n="obj3T">Core Activities</h4>
+                        <ul>
+                            <li data-i18n="obj3L1">National lobbying and government relations</li>
+                            <li data-i18n="obj3L2">Parliamentary committee testimony and policy briefs</li>
+                            <li data-i18n="obj3L3">Inter-provincial coordination on shared fisheries issues</li>
+                            <li data-i18n="obj3L4">Public awareness campaigns on harvester rights</li>
+                            <li data-i18n="obj3L5">Research and data analysis on fisheries economics</li>
+                        </ul>
+                    </div>
+                    <div class="objective-card fade-in fade-in-delay-3">
+                        <h4 data-i18n="obj4T">Accountability</h4>
+                        <p data-i18n="obj4P">Tracking government commitments, grading federal responses to parliamentary recommendations, and holding decision-makers accountable for the promises they make to fishing communities.</p>
+                    </div>
+                </div>
+
+                <div class="policy-highlight fade-in">
+                    <h3 data-i18n="objPolicyH3">Key Policy Positions</h3>
+                    <p data-i18n="objPolicyP">The Canadian Independent Fish Harvesters Federation advocates on critical policy fronts that protect independent harvesters and the communities they sustain.</p>
+                    <div class="policy-columns">
+                        <div class="policy-col">
+                            <h4 data-i18n="objPolAtlH">Atlantic Canada</h4>
+                            <ul>
+                                <li data-i18n="objPolAtl1">Fleet Separation Policy &mdash; keeping fishing licences and processing separate</li>
+                                <li data-i18n="objPolAtl2">Owner-Operator Policy &mdash; licence holders must be on the vessel</li>
+                                <li data-i18n="objPolAtl3">PIIFCAF &mdash; Preserving the Independence of the Inshore Fleet in Canada's Atlantic Fisheries</li>
+                                <li data-i18n="objPolAtl4">Opposition to corporate consolidation of fishing rights</li>
+                            </ul>
+                        </div>
+                        <div class="policy-col">
+                            <h4 data-i18n="objPolBCH">British Columbia</h4>
+                            <ul>
+                                <li data-i18n="objPolBC1">Advocacy for owner-operator protections on the Pacific coast</li>
+                                <li data-i18n="objPolBC2">Opposition to licence leasing and armchair fishing</li>
+                                <li data-i18n="objPolBC3">Fair access to quota and licensing for working harvesters</li>
+                                <li data-i18n="objPolBC4">Support for Pacific salmon conservation and rebuilding</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== MEMBERS ==================== -->
+    <div class="page" id="page-members">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="membersBadge">Coast to Coast</div>
+                <h1 data-i18n="membersHeroTitle">Member Organizations of the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
+                <p data-i18n="membersHeroSub">Our federation unites fishing associations from across Canada, each representing the independent harvesters of their region.</p>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="members-grid">
+                    <!-- British Columbia -->
+                    <div class="province-card fade-in">
+                        <div class="province-header">
+                            <div class="province-icon">&#127754;</div>
+                            <h3>British Columbia</h3>
+                            <span class="count" data-i18n="bc4">4 members</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Area A Crab Fishermen's Association</span></div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">BC Longline Fishermen's Association</span></div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">BC Shrimp Trawl Association</span></div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">United Fishermen and Allied Workers Union</span></div>
+                        </div>
+                    </div>
+
+                    <!-- New Brunswick -->
+                    <div class="province-card fade-in fade-in-delay-1">
+                        <div class="province-header">
+                            <div class="province-icon">&#9875;</div>
+                            <h3>New Brunswick</h3>
+                            <span class="count" data-i18n="nb4">4 members</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://www.frapp.org" target="_blank" rel="noopener">F&eacute;d&eacute;ration r&eacute;gionale acadienne des p&ecirc;cheurs professionnels</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://www.fundynorth.org/" target="_blank" rel="noopener">Fundy North Fishermen's Association</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://gmfa.nb.ca/" target="_blank" rel="noopener">Grand Manan Fishermen's Association</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item">
+                                <span class="member-dot no-link"></span>
+                                <span class="member-name">Union des p&ecirc;cheurs des Maritimes / Maritime Fishermen's Union</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newfoundland and Labrador -->
+                    <div class="province-card fade-in fade-in-delay-2">
+                        <div class="province-header">
+                            <div class="province-icon">&#127907;</div>
+                            <h3>Newfoundland &amp; Labrador</h3>
+                            <span class="count" data-i18n="nl1">1 member</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://www.ffaw.nf.ca/" target="_blank" rel="noopener">Fish, Food and Allied Workers</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nova Scotia -->
+                    <div class="province-card fade-in">
+                        <div class="province-header">
+                            <div class="province-icon">&#128674;</div>
+                            <h3>Nova Scotia</h3>
+                            <span class="count" data-i18n="ns6">6 members</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://capebretonlobster.com" target="_blank" rel="noopener">Cape Breton Fish Harvesters Association</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Eastern Shore Fishermen's Protective Association</span></div>
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://www.gcifa.ns.ca/Home.html" target="_blank" rel="noopener">Guysborough Co Inshore Fishermen's Association</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Halifax West Fishermen's Association</span></div>
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://mfu6.com/" target="_blank" rel="noopener">Maritime Fishermen's Union Local 6</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Richmond County Fishermen's Association</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Prince Edward Island -->
+                    <div class="province-card fade-in fade-in-delay-1">
+                        <div class="province-header">
+                            <div class="province-icon">&#127965;</div>
+                            <h3>Prince Edward Island</h3>
+                            <span class="count" data-i18n="pei1">1 member</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Prince Edward Island Fishermen's Association</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Quebec - Alliance -->
+                    <div class="province-card fade-in fade-in-delay-2">
+                        <div class="province-header">
+                            <div class="province-icon">&#9881;</div>
+                            <h3>Qu&eacute;bec <small style="opacity:0.7;font-weight:400">&mdash; Alliance des P&ecirc;cheurs</small></h3>
+                            <span class="count" data-i18n="qcA3">3 members</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des p&ecirc;cheurs propri&eacute;taires des &Icirc;les de la Madeleine</span></div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Regroupement des p&ecirc;cheurs professionnels de la moyenne et haute C&ocirc;te-Nord</span></div>
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://monhomard.ca" target="_blank" rel="noopener">Regroupement des P&ecirc;cheurs Professionnels du Sud de la Gasp&eacute;sie</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quebec - Federation -->
+                    <div class="province-card fade-in fade-in-delay-3">
+                        <div class="province-header">
+                            <div class="province-icon">&#9881;</div>
+                            <h3>Qu&eacute;bec <small style="opacity:0.7;font-weight:400">&mdash; F&eacute;d. semi-hauturiers</small></h3>
+                            <span class="count" data-i18n="qcF3">3 members</span>
+                        </div>
+                        <div class="province-members">
+                            <div class="member-item">
+                                <span class="member-dot has-link"></span>
+                                <a href="http://www.acpgaspesie.com" target="_blank" rel="noopener">Association des capitaines propri&eacute;taires de la Gasp&eacute;sie</a>
+                                <span class="member-link-icon">&#8599;</span>
+                            </div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des crabiers des &Icirc;les de la Madeleine</span></div>
+                            <div class="member-item"><span class="member-dot no-link"></span><span class="member-name">Association des crabiers gasp&eacute;siens</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== MEET THE EXECUTIVE ==================== -->
+    <div class="page" id="page-executive">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="execBadge">Leadership</div>
+                <h1 data-i18n="execHeroTitle">Meet the Executive of the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
+                <p data-i18n="execHeroSub">The dedicated leaders who represent independent fish harvesters at the national level.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label" data-i18n="execLabel">Executive Team</div>
+                    <h2 data-i18n="execH2">Federation Leadership</h2>
+                    <p data-i18n="execSubP">Elected by the membership to guide the Federation's advocacy, policy, and operations.</p>
+                </div>
+                <div class="exec-grid">
+                    <div class="exec-card fade-in">
+                        <div class="exec-photo">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                        </div>
+                        <div class="exec-card-body">
+                            <h3>Melanie Sonnenberg</h3>
+                            <p data-i18n="execRole1">President</p>
+                        </div>
+                    </div>
+                    <div class="exec-card fade-in fade-in-delay-1">
+                        <div class="exec-photo">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                        </div>
+                        <div class="exec-card-body">
+                            <h3>Amy Howe</h3>
+                            <p data-i18n="execRole2">Executive Member</p>
+                        </div>
+                    </div>
+                    <div class="exec-card fade-in fade-in-delay-2">
+                        <div class="exec-photo">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                        </div>
+                        <div class="exec-card-body">
+                            <h3 data-i18n="execName3">Executive Member</h3>
+                            <p data-i18n="execRole3">Executive Member</p>
+                        </div>
+                    </div>
+                    <div class="exec-card fade-in fade-in-delay-3">
+                        <div class="exec-photo">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                        </div>
+                        <div class="exec-card-body">
+                            <h3 data-i18n="execName4">Executive Member</h3>
+                            <p data-i18n="execRole4">Executive Member</p>
+                        </div>
+                    </div>
+                    <div class="exec-card fade-in">
+                        <div class="exec-photo">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                        </div>
+                        <div class="exec-card-body">
+                            <h3 data-i18n="execName5">Executive Member</h3>
+                            <p data-i18n="execRole5">Executive Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== COMMUNITY IMPACT ==================== -->
+    <div class="page" id="page-impact">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="impactBadge">Accountability</div>
+                <h1 data-i18n="impactHeroTitle">Community Impact &amp;<br><em>FOPO Accountability</em></h1>
+                <p data-i18n="impactHeroSub">Tracking parliamentary recommendations and measuring real progress on the issues that matter most to independent fish harvesters.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label" data-i18n="impactLabel">Community Impact</div>
+                    <h2 data-i18n="impactTitle">Holding Government Accountable for Our Fisheries</h2>
+                    <p data-i18n="impactSub">Our FOPO Accountability Report tracks parliamentary recommendations and measures real progress on the issues that matter most to independent fish harvesters.</p>
+                </div>
+
+                <div class="impact-stats-grid">
+                    <div class="impact-stat-card fade-in">
+                        <div class="impact-stat-num">51</div>
+                        <div class="impact-stat-label" data-i18n="impactStat1Label">Recommendations Tracked</div>
+                        <div class="impact-stat-desc" data-i18n="impactStat1Desc">Across FOPO Reports 13 and 16</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-1">
+                        <div class="impact-stat-num">70</div>
+                        <div class="impact-stat-label" data-i18n="impactStat2Label">Witnesses Heard</div>
+                        <div class="impact-stat-desc" data-i18n="impactStat2Desc">Testified across both parliamentary studies</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-2">
+                        <div class="impact-stat-num">1,400+</div>
+                        <div class="impact-stat-label" data-i18n="impactStat3Label">Illegal Harvesting Reports</div>
+                        <div class="impact-stat-desc" data-i18n="impactStat3Desc">Elver poaching incidents reported in 2023</div>
+                    </div>
+                    <div class="impact-stat-card fade-in fade-in-delay-3">
+                        <div class="impact-stat-num">30/180</div>
+                        <div class="impact-stat-label" data-i18n="impactStat4Label">Fish Stocks Rebuilding</div>
+                        <div class="impact-stat-desc" data-i18n="impactStat4Desc">Only 30 of 180 stocks listed for rebuilding plans</div>
+                    </div>
+                </div>
+
+                <div class="impact-narrative">
+                    <div class="impact-narrative-text fade-in">
+                        <h3 data-i18n="impactNarrTitle">Why Accountability Matters</h3>
+                        <p data-i18n="impactNarrP1">When Parliament's Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.</p>
+                        <p data-i18n="impactNarrP2">Our Accountability Report grades the federal government's response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain&mdash;particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.</p>
+                        <p data-i18n="impactNarrP3">With $789.6 million spent on NIHB medical transportation in 2023&ndash;24 and only a fraction directed at fisheries enforcement, the allocation of federal resources demands scrutiny. Independent harvesters deserve a government that matches its commitments with action.</p>
+                    </div>
+                    <div class="impact-report-card fade-in fade-in-delay-2">
+                        <div class="impact-report-card-inner">
+                            <h4 data-i18n="impactReportTitle">FOPO Accountability Report</h4>
+                            <p data-i18n="impactReportDesc">Key areas covered in our comprehensive review of parliamentary recommendations:</p>
+                            <ul>
+                                <li data-i18n="impactReportItem1">Owner-operator policy protections</li>
+                                <li data-i18n="impactReportItem2">IUU fishing and enforcement gaps</li>
+                                <li data-i18n="impactReportItem3">Fish stock rebuilding commitments</li>
+                                <li data-i18n="impactReportItem4">Elver fishery crisis response</li>
+                                <li data-i18n="impactReportItem5">Federal resource allocation</li>
+                            </ul>
+                            <a href="#" class="impact-cta-link">
+                                <span data-i18n="impactReportCta">Read the Full Report</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== NEWS ==================== -->
+    <div class="page" id="page-news">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="newsBadge">Stay Informed</div>
+                <h1 data-i18n="newsHeroTitle">News from the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
+                <p data-i18n="newsHeroSub">The latest updates on policy developments, advocacy work, and issues shaping the future of independent fish harvesting in Canada.</p>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="news-grid">
+                    <div class="news-card fade-in">
+                        <div class="news-card-image">
+                            <div class="news-card-icon">&#128220;</div>
+                            <span class="news-card-tag" data-i18n="newsTag1">Report</span>
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-card-date" data-i18n="newsDate1">February 2026</div>
+                            <h3 data-i18n="newsHeadline1">FOPO Accountability Report Published</h3>
+                            <p data-i18n="newsExcerpt1">The Canadian Independent Fish Harvesters Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.</p>
+                            <a href="#" class="news-read-more">
+                                <span data-i18n="newsReadMore">Read More</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="news-card fade-in fade-in-delay-1">
+                        <div class="news-card-image">
+                            <div class="news-card-icon">&#127907;</div>
+                            <span class="news-card-tag" data-i18n="newsTag2">Policy</span>
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-card-date" data-i18n="newsDate2">January 2025</div>
+                            <h3 data-i18n="newsHeadline2">2025 Elver Fishery Reopens with New Regulations</h3>
+                            <p data-i18n="newsExcerpt2">After two years of closures due to rampant illegal harvesting, DFO announces the reopening of the elver fishery with strengthened oversight, new traceability requirements, and enhanced enforcement measures.</p>
+                            <a href="#" class="news-read-more">
+                                <span data-i18n="newsReadMore">Read More</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="news-card fade-in fade-in-delay-2">
+                        <div class="news-card-image">
+                            <div class="news-card-icon">&#9878;</div>
+                            <span class="news-card-tag" data-i18n="newsTag3">Advocacy</span>
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-card-date" data-i18n="newsDate3">December 2024</div>
+                            <h3 data-i18n="newsHeadline3">Owner-Operator Protections: What Pacific Harvesters Need to Know</h3>
+                            <p data-i18n="newsExcerpt3">As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how the Canadian Independent Fish Harvesters Federation is advocating for fair access.</p>
+                            <a href="#" class="news-read-more">
+                                <span data-i18n="newsReadMore">Read More</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== CONTACT ==================== -->
+    <div class="page" id="page-contact">
+        <section class="hero" style="padding-bottom: 60px;">
+            <div class="hero-content">
+                <div class="hero-badge" data-i18n="contactBadge">Get In Touch</div>
+                <h1 data-i18n="contactHeroTitle">Contact the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
+                <p data-i18n="contactHeroSub">Whether you are a member organization, prospective member, or stakeholder, we welcome your inquiry.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <h3 data-i18n="contactOffice">Federation Office</h3>
+                        <div class="contact-detail">
+                            <div class="icon-circle">&#128205;</div>
+                            <div>
+                                <h4 data-i18n="contactAddrH">Address</h4>
+                                <p>408 rue Main Street<br>Sh&eacute;diac, NB E4P 2G1<br>Canada</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="icon-circle">&#9993;</div>
+                            <div>
+                                <h4 data-i18n="contactEmailH">Email</h4>
+                                <p><a href="mailto:info@fed-fede.ca" style="color:var(--link);text-decoration:none;">info@fed-fede.ca</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="icon-circle">&#127760;</div>
+                            <div>
+                                <h4 data-i18n="contactWebH">Website</h4>
+                                <p><a href="https://fed-fede.ca" target="_blank" rel="noopener" style="color:var(--link);text-decoration:none;">fed-fede.ca</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form fade-in fade-in-delay-2">
+                        <h3 data-i18n="contactFormH">Send Us a Message</h3>
+                        <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will be in touch shortly.');">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fname" data-i18n="contactFName">First Name</label>
+                                    <input type="text" id="fname" placeholder="Your first name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lname" data-i18n="contactLName">Last Name</label>
+                                    <input type="text" id="lname" placeholder="Your last name">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" placeholder="Your last name">
+                                <label for="email" data-i18n="contactEmail">Email Address</label>
+                                <input type="email" id="email" placeholder="you@example.com">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="you@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject">
-                                <option value="">Select a topic...</option>
-                                <option>Membership Inquiry</option>
-                                <option>Policy &amp; Advocacy</option>
-                                <option>Media &amp; Press</option>
-                                <option>Partnership Opportunity</option>
-                                <option>General Question</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" placeholder="How can we help?"></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
+                            <div class="form-group">
+                                <label for="subject" data-i18n="contactSubject">Subject</label>
+                                <select id="subject">
+                                    <option value="" data-i18n="contactSubOpt0">Select a topic...</option>
+                                    <option data-i18n="contactSubOpt1">Membership Inquiry</option>
+                                    <option data-i18n="contactSubOpt2">Policy &amp; Advocacy</option>
+                                    <option data-i18n="contactSubOpt3">Media &amp; Press</option>
+                                    <option data-i18n="contactSubOpt4">Partnership Opportunity</option>
+                                    <option data-i18n="contactSubOpt5">General Question</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" data-i18n="contactMsg">Message</label>
+                                <textarea id="message" placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit" data-i18n="contactSend">Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-inner">
-            <div class="footer-brand"><span>CIFHF</span> &mdash; Canadian Independent Fish Harvesters Federation</div>
+            <div class="footer-logo">
+                <img src="https://fed-fede.ca/wp-content/uploads/2015/09/logo-footer-white.png" alt="Canadian Independent Fish Harvesters Federation">
+            </div>
             <ul class="footer-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#members">Members</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a onclick="navigateTo('home')" data-i18n="navHome">Home</a></li>
+                <li><a onclick="navigateTo('about')" data-i18n="navAbout">About Us</a></li>
+                <li><a onclick="navigateTo('objectives')" data-i18n="navObjectives">Objectives</a></li>
+                <li><a onclick="navigateTo('members')" data-i18n="navMembers">Our Members</a></li>
+                <li><a onclick="navigateTo('executive')" data-i18n="navExec">Executive</a></li>
+                <li><a onclick="navigateTo('impact')" data-i18n="navImpact">Impact</a></li>
+                <li><a onclick="navigateTo('news')" data-i18n="navNews">News</a></li>
+                <li><a onclick="navigateTo('contact')" data-i18n="navContact">Contact</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Canadian Independent Fish Harvesters Federation. All rights reserved.</p>
-            <p style="margin-top:8px;opacity:0.5;font-size:11px;">Built by <a href="#">The Ember Company</a></p>
+            <p>&copy; 2026 Canadian Independent Fish Harvesters Federation / F&eacute;d&eacute;ration canadienne des p&ecirc;cheurs ind&eacute;pendants. <span data-i18n="footerRights">All rights reserved.</span></p>
+            <p style="margin-top:6px;opacity:0.5;font-size:11px;">Built by <a href="#">The Ember Company</a></p>
         </div>
     </footer>
 
     <script>
-        // ===== Scroll Navigation Highlight =====
+        // ===== SPA Navigation =====
+        function navigateTo(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+
+            // Highlight nav
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('data-page') === page);
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Re-observe fade-ins on new page
+            setTimeout(() => {
+                document.querySelectorAll('.page.active .fade-in').forEach(el => {
+                    el.classList.remove('visible');
+                    observer.observe(el);
+                });
+            }, 50);
+        }
+
+        // ===== Scroll Nav Shadow =====
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 50);
@@ -1005,41 +1248,93 @@
             mobileMenu.classList.remove('open');
         }
 
-        // ===== Fade-in on Scroll =====
+        // ===== Fade-in Observer =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // ===== Language Toggle (UI Demo) =====
+        // ===== Set Home active by default =====
+        document.querySelector('.nav-links a[data-page="home"]').classList.add('active');
+
+        // ===== EN/FR Toggle =====
         let isEN = true;
-        const translations = {
+        const tr = {
             en: {
+                navHome: 'Home', navAbout: 'About Us', navObjectives: 'Objectives',
+                navMembers: 'Our Members', navExec: 'Executive', navImpact: 'Impact',
+                navNews: 'News', navContact: 'Contact',
+                heroBadge: 'United Voice for Independent Harvesters',
                 heroTitle: 'Canadian Independent<br><em>Fish Harvesters</em><br>Federation',
                 heroSub: 'Advocating for the rights, sustainability, and prosperity of independent fish harvesters across every coast and waterway of Canada.',
                 heroCta: 'Meet Our Members',
-                aboutLabel: 'About Us',
-                membersLabel: 'Our Members',
-                membersTitle: 'Member Organizations by Province',
+                heroStat1: 'Licensed Owner-Operators', heroStat2: 'Landed Value', heroStat3: 'Jobs Supported',
+                homeMissionLabel: 'Our Mission',
+                homeMissionTitle: 'Protecting Canada\'s Independent Fishing Heritage',
+                homeMissionSub: 'The Canadian Independent Fish Harvesters Federation brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.',
+                homeAboutH3: 'A National Voice Since 1995',
+                homeAboutP1: 'The Canadian Independent Fish Harvesters Federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada\'s fishing heritage for generations.',
+                homeAboutP2: 'Our federation represents member organizations across six provinces, from the Pacific to the Atlantic, united in the belief that those who fish should control their licences and their livelihoods.',
+                homeVisualP: 'Provinces represented<br>coast to coast',
+                aboutBadge: 'Who We Are',
+                aboutHeroTitle: 'About the Canadian Independent<br><em>Fish Harvesters Federation</em>',
+                aboutHeroSub: 'A national federation representing independent fish harvesters from coast to coast, advocating for sustainable fisheries and the communities that depend on them.',
+                aboutMissionLabel: 'Mission & Identity',
+                aboutMissionH3: 'Protecting the Livelihood of Canada\'s Independent Fish Harvesters',
+                aboutMissionP1: 'The Canadian Independent Fish Harvesters Federation (CIFHF) brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.',
+                aboutMissionP2: 'Our federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada\'s fishing heritage for generations.',
+                aboutFeat1T: 'Policy Advocacy', aboutFeat1D: 'Representing harvesters in federal fisheries policy, trade negotiations, and regulatory consultations.',
+                aboutFeat2T: 'Sustainability Leadership', aboutFeat2D: 'Championing science-based management and responsible harvesting practices.',
+                aboutFeat3T: 'Member Support', aboutFeat3D: 'Connecting regional associations with shared resources, expertise, and a unified national platform.',
+                aboutVisualP: 'Decades of advocacy for<br>independent fish harvesters',
+                aboutEconLabel: 'Economic Impact', aboutEconH2: 'An Industry That Sustains Communities',
+                aboutEcon1L: 'Licensed Owners', aboutEcon1D: 'Independent fish harvesting licence holders across Canada',
+                aboutEcon2L: 'Landed Value', aboutEcon2D: 'Annual value of fish and seafood landed by independent harvesters',
+                aboutEcon3L: 'Jobs Supported', aboutEcon3D: 'Direct and indirect employment in coastal communities',
+                aboutEcon4L: 'Provinces', aboutEcon4D: 'From British Columbia to Newfoundland and Labrador',
+                aboutGovLabel: 'Governance', aboutGovH2: 'How the Federation Is Governed',
+                aboutGovP: 'The Canadian Independent Fish Harvesters Federation operates through a democratic governance structure that ensures every member organization has a voice.',
+                aboutGov1T: 'Constitutional Convention', aboutGov1D: 'The supreme governing body of the Federation. All member organizations send delegates to set policy direction and amend the constitution.',
+                aboutGov2T: 'Board of Directors', aboutGov2D: 'Elected representatives from each member organization who oversee operations, approve budgets, and guide strategic direction between conventions.',
+                aboutGov3T: 'Executive Committee', aboutGov3D: 'The President and executive members who manage day-to-day operations, represent the Federation publicly, and execute Board decisions.',
+                objBadge: 'What We Stand For',
+                objHeroTitle: 'Objectives of the<br><em>Canadian Independent Fish Harvesters Federation</em>',
+                objHeroSub: 'Protecting independent harvesters, preserving coastal communities, and ensuring sustainable fisheries for future generations.',
+                objCoreLabel: 'Core Objectives', objCoreH2: 'Shared Vision, Unified Action',
+                obj1T: 'Primary Mission', obj1P: 'To protect and advance the interests of independent, owner-operator fish harvesters across Canada through coordinated national advocacy, policy development, and representation before federal government bodies.',
+                obj2T: 'Shared Vision', obj2P: 'A Canadian fishing industry where independent harvesters control their licences and enterprises, coastal communities thrive, and marine resources are managed sustainably for the benefit of current and future generations.',
+                obj3T: 'Core Activities', obj3L1: 'National lobbying and government relations', obj3L2: 'Parliamentary committee testimony and policy briefs', obj3L3: 'Inter-provincial coordination on shared fisheries issues', obj3L4: 'Public awareness campaigns on harvester rights', obj3L5: 'Research and data analysis on fisheries economics',
+                obj4T: 'Accountability', obj4P: 'Tracking government commitments, grading federal responses to parliamentary recommendations, and holding decision-makers accountable for the promises they make to fishing communities.',
+                objPolicyH3: 'Key Policy Positions', objPolicyP: 'The Canadian Independent Fish Harvesters Federation advocates on critical policy fronts that protect independent harvesters and the communities they sustain.',
+                objPolAtlH: 'Atlantic Canada', objPolAtl1: 'Fleet Separation Policy \u2014 keeping fishing licences and processing separate', objPolAtl2: 'Owner-Operator Policy \u2014 licence holders must be on the vessel', objPolAtl3: 'PIIFCAF \u2014 Preserving the Independence of the Inshore Fleet in Canada\u2019s Atlantic Fisheries', objPolAtl4: 'Opposition to corporate consolidation of fishing rights',
+                objPolBCH: 'British Columbia', objPolBC1: 'Advocacy for owner-operator protections on the Pacific coast', objPolBC2: 'Opposition to licence leasing and armchair fishing', objPolBC3: 'Fair access to quota and licensing for working harvesters', objPolBC4: 'Support for Pacific salmon conservation and rebuilding',
+                membersBadge: 'Coast to Coast',
+                membersHeroTitle: 'Member Organizations of the<br><em>Canadian Independent Fish Harvesters Federation</em>',
+                membersHeroSub: 'Our federation unites fishing associations from across Canada, each representing the independent harvesters of their region.',
+                execBadge: 'Leadership',
+                execHeroTitle: 'Meet the Executive of the<br><em>Canadian Independent Fish Harvesters Federation</em>',
+                execHeroSub: 'The dedicated leaders who represent independent fish harvesters at the national level.',
+                execLabel: 'Executive Team', execH2: 'Federation Leadership',
+                execSubP: 'Elected by the membership to guide the Federation\u2019s advocacy, policy, and operations.',
+                execRole1: 'President', execRole2: 'Executive Member',
+                execName3: 'Executive Member', execRole3: 'Executive Member',
+                execName4: 'Executive Member', execRole4: 'Executive Member',
+                execName5: 'Executive Member', execRole5: 'Executive Member',
+                impactBadge: 'Accountability',
+                impactHeroTitle: 'Community Impact &<br><em>FOPO Accountability</em>',
+                impactHeroSub: 'Tracking parliamentary recommendations and measuring real progress on the issues that matter most to independent fish harvesters.',
                 impactLabel: 'Community Impact',
                 impactTitle: 'Holding Government Accountable for Our Fisheries',
                 impactSub: 'Our FOPO Accountability Report tracks parliamentary recommendations and measures real progress on the issues that matter most to independent fish harvesters.',
-                impactStat1Label: 'Recommendations Tracked',
-                impactStat1Desc: 'Across FOPO Reports 13 and 16',
-                impactStat2Label: 'Witnesses Heard',
-                impactStat2Desc: 'Testified across both parliamentary studies',
-                impactStat3Label: 'Illegal Harvesting Reports',
-                impactStat3Desc: 'Elver poaching incidents reported in 2023',
-                impactStat4Label: 'Fish Stocks Rebuilding',
-                impactStat4Desc: 'Only 30 of 180 stocks listed for rebuilding plans',
+                impactStat1Label: 'Recommendations Tracked', impactStat1Desc: 'Across FOPO Reports 13 and 16',
+                impactStat2Label: 'Witnesses Heard', impactStat2Desc: 'Testified across both parliamentary studies',
+                impactStat3Label: 'Illegal Harvesting Reports', impactStat3Desc: 'Elver poaching incidents reported in 2023',
+                impactStat4Label: 'Fish Stocks Rebuilding', impactStat4Desc: 'Only 30 of 180 stocks listed for rebuilding plans',
                 impactNarrTitle: 'Why Accountability Matters',
-                impactNarrP1: 'When Parliament\'s Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.',
-                impactNarrP2: 'Our Accountability Report grades the federal government\'s response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain\u2014particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.',
+                impactNarrP1: 'When Parliament\u2019s Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.',
+                impactNarrP2: 'Our Accountability Report grades the federal government\u2019s response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain\u2014particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.',
                 impactNarrP3: 'With $789.6 million spent on NIHB medical transportation in 2023\u201324 and only a fraction directed at fisheries enforcement, the allocation of federal resources demands scrutiny. Independent harvesters deserve a government that matches its commitments with action.',
                 impactReportTitle: 'FOPO Accountability Report',
                 impactReportDesc: 'Key areas covered in our comprehensive review of parliamentary recommendations:',
@@ -1048,110 +1343,151 @@
                 impactReportItem3: 'Fish stock rebuilding commitments',
                 impactReportItem4: 'Elver fishery crisis response',
                 impactReportItem5: 'Federal resource allocation',
-                impactReportCta: 'Read the Full Report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-                newsLabel: 'News',
-                newsTitle: 'Latest Updates',
-                newsSub: 'Stay informed on the issues, policy developments, and advocacy work shaping the future of independent fish harvesting in Canada.',
-                newsTag1: 'Report',
-                newsTag2: 'Policy',
-                newsTag3: 'Advocacy',
-                newsDate1: 'February 2026',
-                newsDate2: 'January 2025',
-                newsDate3: 'December 2024',
+                impactReportCta: 'Read the Full Report',
+                newsBadge: 'Stay Informed',
+                newsHeroTitle: 'News from the<br><em>Canadian Independent Fish Harvesters Federation</em>',
+                newsHeroSub: 'The latest updates on policy developments, advocacy work, and issues shaping the future of independent fish harvesting in Canada.',
+                newsTag1: 'Report', newsTag2: 'Policy', newsTag3: 'Advocacy',
+                newsDate1: 'February 2026', newsDate2: 'January 2025', newsDate3: 'December 2024',
                 newsHeadline1: 'FOPO Accountability Report Published',
                 newsHeadline2: '2025 Elver Fishery Reopens with New Regulations',
                 newsHeadline3: 'Owner-Operator Protections: What Pacific Harvesters Need to Know',
-                newsExcerpt1: 'The Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.',
+                newsExcerpt1: 'The Canadian Independent Fish Harvesters Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.',
                 newsExcerpt2: 'After two years of closures due to rampant illegal harvesting, DFO announces the reopening of the elver fishery with strengthened oversight, new traceability requirements, and enhanced enforcement measures.',
-                newsExcerpt3: 'As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how CIFHF is advocating for fair access.',
-                newsReadMore: 'Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-                contactLabel: 'Get In Touch',
-                contactTitle: 'Contact the Federation',
+                newsExcerpt3: 'As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how the Canadian Independent Fish Harvesters Federation is advocating for fair access.',
+                newsReadMore: 'Read More',
+                contactBadge: 'Get In Touch',
+                contactHeroTitle: 'Contact the<br><em>Canadian Independent Fish Harvesters Federation</em>',
+                contactHeroSub: 'Whether you are a member organization, prospective member, or stakeholder, we welcome your inquiry.',
+                contactOffice: 'Federation Office', contactAddrH: 'Address', contactEmailH: 'Email', contactWebH: 'Website',
+                contactFormH: 'Send Us a Message', contactFName: 'First Name', contactLName: 'Last Name',
+                contactEmail: 'Email Address', contactSubject: 'Subject', contactMsg: 'Message', contactSend: 'Send Message',
+                contactSubOpt0: 'Select a topic...', contactSubOpt1: 'Membership Inquiry', contactSubOpt2: 'Policy & Advocacy',
+                contactSubOpt3: 'Media & Press', contactSubOpt4: 'Partnership Opportunity', contactSubOpt5: 'General Question',
+                footerRights: 'All rights reserved.',
             },
             fr: {
-                heroTitle: 'F&eacute;d&eacute;ration canadienne des<br><em>P&ecirc;cheurs</em><br>Ind&eacute;pendants',
-                heroSub: 'D&eacute;fendre les droits, la durabilit&eacute; et la prosp&eacute;rit&eacute; des p&ecirc;cheurs ind&eacute;pendants sur toutes les c&ocirc;tes et voies navigables du Canada.',
+                navHome: 'Accueil', navAbout: '\u00c0 Propos', navObjectives: 'Objectifs',
+                navMembers: 'Nos Membres', navExec: 'Ex\u00e9cutif', navImpact: 'Impact',
+                navNews: 'Actualit\u00e9s', navContact: 'Contact',
+                heroBadge: 'Voix unie des p\u00eacheurs ind\u00e9pendants',
+                heroTitle: 'F\u00e9d\u00e9ration canadienne des<br><em>p\u00eacheurs</em><br>ind\u00e9pendants',
+                heroSub: 'D\u00e9fendre les droits, la durabilit\u00e9 et la prosp\u00e9rit\u00e9 des p\u00eacheurs ind\u00e9pendants sur toutes les c\u00f4tes et voies navigables du Canada.',
                 heroCta: 'Nos Membres',
-                aboutLabel: '&Agrave; Propos',
-                membersLabel: 'Nos Membres',
-                membersTitle: 'Organisations membres par province',
-                impactLabel: 'Impact Communautaire',
-                impactTitle: 'Responsabiliser le gouvernement pour nos p&ecirc;cheries',
-                impactSub: 'Notre rapport de responsabilisation du CPPO suit les recommandations parlementaires et mesure les progr&egrave;s r&eacute;els sur les enjeux les plus importants pour les p&ecirc;cheurs ind&eacute;pendants.',
-                impactStat1Label: 'Recommandations suivies',
-                impactStat1Desc: '&Agrave; travers les rapports 13 et 16 du CPPO',
-                impactStat2Label: 'T&eacute;moins entendus',
-                impactStat2Desc: 'T&eacute;moignages dans les deux &eacute;tudes parlementaires',
-                impactStat3Label: 'Signalements de p&ecirc;che ill&eacute;gale',
-                impactStat3Desc: 'Incidents de braconnage de civelles signal&eacute;s en 2023',
-                impactStat4Label: 'Stocks en reconstruction',
-                impactStat4Desc: 'Seulement 30 des 180 stocks inscrits aux plans de reconstruction',
+                heroStat1: 'Propri\u00e9taires-exploitants licenci\u00e9s', heroStat2: 'Valeur au d\u00e9barquement', heroStat3: 'Emplois soutenus',
+                homeMissionLabel: 'Notre Mission',
+                homeMissionTitle: 'Prot\u00e9ger le patrimoine de p\u00eache ind\u00e9pendante du Canada',
+                homeMissionSub: 'La F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants rassemble des associations de p\u00eache de la Colombie-Britannique \u00e0 Terre-Neuve, repr\u00e9sentant la voix collective des p\u00eacheurs ind\u00e9pendants.',
+                homeAboutH3: 'Une voix nationale depuis 1995',
+                homeAboutP1: 'La F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants plaide au niveau national pour des politiques qui prot\u00e8gent le principe propri\u00e9taire-exploitant, assurent un acc\u00e8s \u00e9quitable aux ressources marines et soutiennent les communaut\u00e9s c\u00f4ti\u00e8res.',
+                homeAboutP2: 'Notre f\u00e9d\u00e9ration repr\u00e9sente des organisations membres dans six provinces, du Pacifique \u00e0 l\u2019Atlantique, unies dans la conviction que ceux qui p\u00eachent doivent contr\u00f4ler leurs permis et leurs moyens de subsistance.',
+                homeVisualP: 'Provinces repr\u00e9sent\u00e9es<br>d\u2019un oc\u00e9an \u00e0 l\u2019autre',
+                aboutBadge: 'Qui nous sommes',
+                aboutHeroTitle: '\u00c0 propos de la F\u00e9d\u00e9ration canadienne des<br><em>p\u00eacheurs ind\u00e9pendants</em>',
+                aboutHeroSub: 'Une f\u00e9d\u00e9ration nationale repr\u00e9sentant les p\u00eacheurs ind\u00e9pendants d\u2019un oc\u00e9an \u00e0 l\u2019autre.',
+                aboutMissionLabel: 'Mission et identit\u00e9',
+                aboutMissionH3: 'Prot\u00e9ger les moyens de subsistance des p\u00eacheurs ind\u00e9pendants du Canada',
+                aboutMissionP1: 'La F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants rassemble des associations de p\u00eache de la Colombie-Britannique \u00e0 Terre-Neuve, repr\u00e9sentant la voix collective des p\u00eacheurs ind\u00e9pendants.',
+                aboutMissionP2: 'Notre f\u00e9d\u00e9ration plaide au niveau national pour des politiques qui prot\u00e8gent le principe propri\u00e9taire-exploitant et soutiennent les communaut\u00e9s c\u00f4ti\u00e8res.',
+                aboutFeat1T: 'Plaidoyer politique', aboutFeat1D: 'Repr\u00e9senter les p\u00eacheurs dans la politique f\u00e9d\u00e9rale des p\u00eaches, les n\u00e9gociations commerciales et les consultations r\u00e9glementaires.',
+                aboutFeat2T: 'Leadership en durabilit\u00e9', aboutFeat2D: 'Promouvoir une gestion fond\u00e9e sur la science et des pratiques de r\u00e9colte responsables.',
+                aboutFeat3T: 'Soutien aux membres', aboutFeat3D: 'Relier les associations r\u00e9gionales avec des ressources partag\u00e9es et une plateforme nationale unifi\u00e9e.',
+                aboutVisualP: 'D\u00e9cennies de plaidoyer pour<br>les p\u00eacheurs ind\u00e9pendants',
+                aboutEconLabel: 'Impact \u00e9conomique', aboutEconH2: 'Une industrie qui soutient les communaut\u00e9s',
+                aboutEcon1L: 'Propri\u00e9taires licenci\u00e9s', aboutEcon1D: 'Titulaires de permis de p\u00eache ind\u00e9pendants au Canada',
+                aboutEcon2L: 'Valeur au d\u00e9barquement', aboutEcon2D: 'Valeur annuelle des poissons et fruits de mer d\u00e9barqu\u00e9s',
+                aboutEcon3L: 'Emplois soutenus', aboutEcon3D: 'Emplois directs et indirects dans les communaut\u00e9s c\u00f4ti\u00e8res',
+                aboutEcon4L: 'Provinces', aboutEcon4D: 'De la Colombie-Britannique \u00e0 Terre-Neuve-et-Labrador',
+                aboutGovLabel: 'Gouvernance', aboutGovH2: 'Comment la F\u00e9d\u00e9ration est gouvern\u00e9e',
+                aboutGovP: 'La F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants fonctionne par une structure de gouvernance d\u00e9mocratique.',
+                aboutGov1T: 'Convention constitutionnelle', aboutGov1D: 'L\u2019organe directeur supr\u00eame de la F\u00e9d\u00e9ration. Toutes les organisations membres envoient des d\u00e9l\u00e9gu\u00e9s.',
+                aboutGov2T: 'Conseil d\u2019administration', aboutGov2D: 'Repr\u00e9sentants \u00e9lus de chaque organisation membre qui supervisent les op\u00e9rations et guident l\u2019orientation strat\u00e9gique.',
+                aboutGov3T: 'Comit\u00e9 ex\u00e9cutif', aboutGov3D: 'Le pr\u00e9sident et les membres ex\u00e9cutifs qui g\u00e8rent les op\u00e9rations quotidiennes.',
+                objBadge: 'Ce que nous d\u00e9fendons',
+                objHeroTitle: 'Objectifs de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
+                objHeroSub: 'Prot\u00e9ger les p\u00eacheurs ind\u00e9pendants, pr\u00e9server les communaut\u00e9s c\u00f4ti\u00e8res et assurer des p\u00eacheries durables.',
+                objCoreLabel: 'Objectifs fondamentaux', objCoreH2: 'Vision partag\u00e9e, action unifi\u00e9e',
+                obj1T: 'Mission principale', obj1P: 'Prot\u00e9ger et faire avancer les int\u00e9r\u00eats des p\u00eacheurs ind\u00e9pendants propri\u00e9taires-exploitants \u00e0 travers le Canada.',
+                obj2T: 'Vision partag\u00e9e', obj2P: 'Une industrie de la p\u00eache canadienne o\u00f9 les p\u00eacheurs ind\u00e9pendants contr\u00f4lent leurs permis et leurs entreprises.',
+                obj3T: 'Activit\u00e9s principales', obj3L1: 'Lobbying national et relations gouvernementales', obj3L2: 'T\u00e9moignages en comit\u00e9 parlementaire et m\u00e9moires', obj3L3: 'Coordination interprovinciale sur les enjeux communs', obj3L4: 'Campagnes de sensibilisation sur les droits des p\u00eacheurs', obj3L5: 'Recherche et analyse de donn\u00e9es sur l\u2019\u00e9conomie des p\u00eaches',
+                obj4T: 'Responsabilisation', obj4P: 'Suivre les engagements gouvernementaux et tenir les d\u00e9cideurs responsables des promesses faites aux communaut\u00e9s de p\u00eache.',
+                objPolicyH3: 'Positions politiques cl\u00e9s', objPolicyP: 'La F\u00e9d\u00e9ration plaide sur des fronts politiques critiques qui prot\u00e8gent les p\u00eacheurs ind\u00e9pendants.',
+                objPolAtlH: 'Canada atlantique', objPolAtl1: 'Politique de s\u00e9paration de la flotte', objPolAtl2: 'Politique propri\u00e9taire-exploitant', objPolAtl3: 'PIIFCAF \u2014 Pr\u00e9server l\u2019ind\u00e9pendance de la flottille c\u00f4ti\u00e8re', objPolAtl4: 'Opposition \u00e0 la consolidation corporative des droits de p\u00eache',
+                objPolBCH: 'Colombie-Britannique', objPolBC1: 'Plaidoyer pour les protections propri\u00e9taire-exploitant sur la c\u00f4te du Pacifique', objPolBC2: 'Opposition \u00e0 la location de permis', objPolBC3: 'Acc\u00e8s \u00e9quitable aux quotas pour les p\u00eacheurs actifs', objPolBC4: 'Soutien \u00e0 la conservation du saumon du Pacifique',
+                membersBadge: 'D\u2019un oc\u00e9an \u00e0 l\u2019autre',
+                membersHeroTitle: 'Organisations membres de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
+                membersHeroSub: 'Notre f\u00e9d\u00e9ration unit les associations de p\u00eache de partout au Canada.',
+                execBadge: 'Direction',
+                execHeroTitle: 'L\u2019\u00e9quipe ex\u00e9cutive de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
+                execHeroSub: 'Les dirigeants d\u00e9vou\u00e9s qui repr\u00e9sentent les p\u00eacheurs ind\u00e9pendants au niveau national.',
+                execLabel: '\u00c9quipe ex\u00e9cutive', execH2: 'Direction de la F\u00e9d\u00e9ration',
+                execSubP: '\u00c9lus par les membres pour guider le plaidoyer, les politiques et les op\u00e9rations de la F\u00e9d\u00e9ration.',
+                execRole1: 'Pr\u00e9sidente', execRole2: 'Membre ex\u00e9cutif',
+                execName3: 'Membre ex\u00e9cutif', execRole3: 'Membre ex\u00e9cutif',
+                execName4: 'Membre ex\u00e9cutif', execRole4: 'Membre ex\u00e9cutif',
+                execName5: 'Membre ex\u00e9cutif', execRole5: 'Membre ex\u00e9cutif',
+                impactBadge: 'Responsabilisation',
+                impactHeroTitle: 'Impact communautaire et<br><em>responsabilisation du CPPO</em>',
+                impactHeroSub: 'Suivre les recommandations parlementaires et mesurer les progr\u00e8s r\u00e9els sur les enjeux importants.',
+                impactLabel: 'Impact communautaire',
+                impactTitle: 'Responsabiliser le gouvernement pour nos p\u00eacheries',
+                impactSub: 'Notre rapport de responsabilisation du CPPO suit les recommandations parlementaires et mesure les progr\u00e8s r\u00e9els.',
+                impactStat1Label: 'Recommandations suivies', impactStat1Desc: '\u00c0 travers les rapports 13 et 16 du CPPO',
+                impactStat2Label: 'T\u00e9moins entendus', impactStat2Desc: 'T\u00e9moignages dans les deux \u00e9tudes parlementaires',
+                impactStat3Label: 'Signalements de p\u00eache ill\u00e9gale', impactStat3Desc: 'Incidents de braconnage de civelles signal\u00e9s en 2023',
+                impactStat4Label: 'Stocks en reconstruction', impactStat4Desc: 'Seulement 30 des 180 stocks inscrits aux plans',
                 impactNarrTitle: 'Pourquoi la responsabilisation compte',
-                impactNarrP1: 'Lorsque le Comit&eacute; permanent des p&ecirc;ches et des oc&eacute;ans (CPPO) &eacute;met des recommandations, elles repr&eacute;sentent la voix des p&ecirc;cheurs, des scientifiques et des communaut&eacute;s c&ocirc;ti&egrave;res qui ont t&eacute;moign&eacute; sous serment. Mais des recommandations sans suivi ne sont que des mots sur papier.',
-                impactNarrP2: 'Notre rapport &eacute;value la r&eacute;ponse du gouvernement f&eacute;d&eacute;ral &agrave; 51 recommandations couvrant les protections propri&eacute;taire-exploitant, l\'application de la loi contre la p&ecirc;che INN et la reconstruction des p&ecirc;cheries. Les constats sont clairs\u00a0: des progr&egrave;s ont &eacute;t&eacute; r&eacute;alis&eacute;s sur certains fronts, mais des lacunes critiques persistent.',
-                impactNarrP3: 'Avec 789,6 millions de dollars consacr&eacute;s au transport m&eacute;dical du SSNA en 2023-24 et seulement une fraction dirig&eacute;e vers l\'application des r&egrave;gles de p&ecirc;che, l\'allocation des ressources f&eacute;d&eacute;rales m&eacute;rite un examen approfondi.',
+                impactNarrP1: 'Lorsque le Comit\u00e9 permanent des p\u00eaches et des oc\u00e9ans (CPPO) \u00e9met des recommandations, elles repr\u00e9sentent la voix des p\u00eacheurs, des scientifiques et des communaut\u00e9s c\u00f4ti\u00e8res. Mais des recommandations sans suivi ne sont que des mots sur papier.',
+                impactNarrP2: 'Notre rapport \u00e9value la r\u00e9ponse du gouvernement f\u00e9d\u00e9ral \u00e0 51 recommandations couvrant les protections propri\u00e9taire-exploitant, l\u2019application de la loi contre la p\u00eache INN et la reconstruction des p\u00eacheries.',
+                impactNarrP3: 'Avec 789,6 millions de dollars consacr\u00e9s au transport m\u00e9dical du SSNA en 2023-24 et seulement une fraction dirig\u00e9e vers l\u2019application des r\u00e8gles de p\u00eache, l\u2019allocation des ressources f\u00e9d\u00e9rales m\u00e9rite un examen approfondi.',
                 impactReportTitle: 'Rapport de responsabilisation du CPPO',
-                impactReportDesc: 'Domaines cl&eacute;s couverts dans notre examen complet des recommandations parlementaires\u00a0:',
-                impactReportItem1: 'Protections de la politique propri&eacute;taire-exploitant',
-                impactReportItem2: 'P&ecirc;che INN et lacunes d\'application',
+                impactReportDesc: 'Domaines cl\u00e9s couverts dans notre examen des recommandations parlementaires\u00a0:',
+                impactReportItem1: 'Protections propri\u00e9taire-exploitant',
+                impactReportItem2: 'P\u00eache INN et lacunes d\u2019application',
                 impactReportItem3: 'Engagements de reconstruction des stocks',
-                impactReportItem4: 'R&eacute;ponse &agrave; la crise de la p&ecirc;che aux civelles',
-                impactReportItem5: 'Allocation des ressources f&eacute;d&eacute;rales',
-                impactReportCta: 'Lire le rapport complet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-                newsLabel: 'Actualit&eacute;s',
-                newsTitle: 'Derni&egrave;res nouvelles',
-                newsSub: 'Restez inform&eacute; des enjeux, des d&eacute;veloppements politiques et du travail de d&eacute;fense qui fa&ccedil;onnent l\'avenir de la p&ecirc;che ind&eacute;pendante au Canada.',
-                newsTag1: 'Rapport',
-                newsTag2: 'Politique',
-                newsTag3: 'Plaidoyer',
-                newsDate1: 'F&eacute;vrier 2026',
-                newsDate2: 'Janvier 2025',
-                newsDate3: 'D&eacute;cembre 2024',
+                impactReportItem4: 'R\u00e9ponse \u00e0 la crise de la p\u00eache aux civelles',
+                impactReportItem5: 'Allocation des ressources f\u00e9d\u00e9rales',
+                impactReportCta: 'Lire le rapport complet',
+                newsBadge: 'Restez inform\u00e9',
+                newsHeroTitle: 'Actualit\u00e9s de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
+                newsHeroSub: 'Les derni\u00e8res nouvelles sur les d\u00e9veloppements politiques et le travail de plaidoyer.',
+                newsTag1: 'Rapport', newsTag2: 'Politique', newsTag3: 'Plaidoyer',
+                newsDate1: 'F\u00e9vrier 2026', newsDate2: 'Janvier 2025', newsDate3: 'D\u00e9cembre 2024',
                 newsHeadline1: 'Publication du rapport de responsabilisation du CPPO',
-                newsHeadline2: 'La p&ecirc;che aux civelles 2025 rouvre avec de nouvelles r&eacute;glementations',
-                newsHeadline3: 'Protections propri&eacute;taire-exploitant\u00a0: ce que les p&ecirc;cheurs du Pacifique doivent savoir',
-                newsExcerpt1: 'La F&eacute;d&eacute;ration publie un rapport complet de responsabilisation suivant 51 recommandations parlementaires &agrave; travers deux grandes &eacute;tudes du CPPO, &eacute;valuant les progr&egrave;s f&eacute;d&eacute;raux en mati&egrave;re de protections, d\'application et de reconstruction des stocks.',
-                newsExcerpt2: 'Apr&egrave;s deux ans de fermetures dues au braconnage g&eacute;n&eacute;ralis&eacute;, le MPO annonce la r&eacute;ouverture de la p&ecirc;che aux civelles avec une surveillance renforc&eacute;e, de nouvelles exigences de tra&ccedil;abilit&eacute; et des mesures d\'application am&eacute;lior&eacute;es.',
-                newsExcerpt3: '&Agrave; mesure que les discussions progressent sur l\'extension des protections propri&eacute;taire-exploitant de l\'Atlantique &agrave; la Colombie-Britannique, nous analysons ce que la politique signifie pour les p&ecirc;cheurs du Pacifique et les d&eacute;fis &agrave; venir.',
-                newsReadMore: 'Lire la suite <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-                contactLabel: 'Contactez-Nous',
-                contactTitle: 'Contacter la F&eacute;d&eacute;ration',
+                newsHeadline2: 'La p\u00eache aux civelles 2025 rouvre avec de nouvelles r\u00e9glementations',
+                newsHeadline3: 'Protections propri\u00e9taire-exploitant\u00a0: ce que les p\u00eacheurs du Pacifique doivent savoir',
+                newsExcerpt1: 'La F\u00e9d\u00e9ration publie un rapport complet suivant 51 recommandations parlementaires \u00e0 travers deux grandes \u00e9tudes du CPPO.',
+                newsExcerpt2: 'Apr\u00e8s deux ans de fermetures dues au braconnage, le MPO annonce la r\u00e9ouverture de la p\u00eache aux civelles avec une surveillance renforc\u00e9e.',
+                newsExcerpt3: '\u00c0 mesure que les discussions progressent sur l\u2019extension des protections propri\u00e9taire-exploitant de l\u2019Atlantique \u00e0 la Colombie-Britannique.',
+                newsReadMore: 'Lire la suite',
+                contactBadge: 'Contactez-Nous',
+                contactHeroTitle: 'Contacter la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
+                contactHeroSub: 'Que vous soyez une organisation membre, un membre potentiel ou un intervenant, nous accueillons votre demande.',
+                contactOffice: 'Bureau de la F\u00e9d\u00e9ration', contactAddrH: 'Adresse', contactEmailH: 'Courriel', contactWebH: 'Site web',
+                contactFormH: 'Envoyez-nous un message', contactFName: 'Pr\u00e9nom', contactLName: 'Nom de famille',
+                contactEmail: 'Adresse courriel', contactSubject: 'Sujet', contactMsg: 'Message', contactSend: 'Envoyer le message',
+                contactSubOpt0: 'S\u00e9lectionnez un sujet...', contactSubOpt1: 'Demande d\u2019adh\u00e9sion', contactSubOpt2: 'Politique et plaidoyer',
+                contactSubOpt3: 'M\u00e9dias et presse', contactSubOpt4: 'Opportunit\u00e9 de partenariat', contactSubOpt5: 'Question g\u00e9n\u00e9rale',
+                footerRights: 'Tous droits r\u00e9serv\u00e9s.',
             }
         };
+
+        function applyLang(lang) {
+            const t = tr[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('.lang-toggle').forEach(b => {
+                b.textContent = lang === 'en' ? 'EN | FR' : 'FR | EN';
+            });
+            document.documentElement.lang = lang;
+        }
 
         document.querySelectorAll('.lang-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
                 isEN = !isEN;
-                const t = isEN ? translations.en : translations.fr;
-
-                // Hero section
-                document.querySelector('.hero h1').innerHTML = t.heroTitle;
-                document.querySelector('.hero p').innerHTML = t.heroSub;
-                document.querySelector('.hero-cta').innerHTML = t.heroCta + ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-
-                // All data-i18n elements
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (t[key] !== undefined) {
-                        el.innerHTML = t[key];
-                    }
-                });
-
-                // Toggle button text
-                document.querySelectorAll('.lang-toggle').forEach(b => {
-                    b.textContent = isEN ? 'EN | FR' : 'FR | EN';
-                });
-            });
-        });
-
-        // ===== Smooth Scroll for CTA =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                applyLang(isEN ? 'en' : 'fr');
             });
         });
     </script>
