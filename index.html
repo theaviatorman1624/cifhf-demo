@@ -265,6 +265,131 @@
         .member-link-icon { margin-left: auto; color: var(--orange); font-size: 12px; opacity: 0; transition: opacity 0.2s; }
         .member-item:hover .member-link-icon { opacity: 1; }
 
+        /* ========== COMMUNITY IMPACT ========== */
+        .impact-stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+            margin-bottom: 60px;
+        }
+        .impact-stat-card {
+            background: var(--white); border-radius: var(--radius);
+            padding: 32px 24px; text-align: center;
+            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
+            transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .impact-stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+        }
+        .impact-stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .impact-stat-num {
+            font-size: 2.5rem; font-weight: 800; color: var(--orange);
+            line-height: 1; margin-bottom: 8px;
+        }
+        .impact-stat-label {
+            font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px;
+        }
+        .impact-stat-desc {
+            font-size: 13px; color: var(--gray-400); line-height: 1.5;
+        }
+        .impact-narrative {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+        }
+        .impact-narrative-text h3 {
+            font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+        }
+        .impact-narrative-text p {
+            color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;
+        }
+        .impact-report-card {
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
+        }
+        .impact-report-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(232,115,42,0.15), transparent 60%);
+        }
+        .impact-report-card-inner { position: relative; z-index: 1; color: var(--white); }
+        .impact-report-card-inner h4 {
+            font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
+        }
+        .impact-report-card-inner p {
+            font-size: 14px; opacity: 0.8; line-height: 1.7; margin-bottom: 24px;
+        }
+        .impact-report-card-inner ul {
+            list-style: none; margin-bottom: 24px;
+        }
+        .impact-report-card-inner ul li {
+            font-size: 14px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 10px; opacity: 0.9;
+        }
+        .impact-report-card-inner ul li:last-child { border-bottom: none; }
+        .impact-report-card-inner ul li::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--orange); flex-shrink: 0;
+        }
+        .impact-cta-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--orange-light); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: all 0.2s;
+        }
+        .impact-cta-link:hover { color: var(--orange); }
+        .impact-cta-link svg { width: 16px; height: 16px; transition: transform 0.3s; }
+        .impact-cta-link:hover svg { transform: translateX(4px); }
+
+        /* ========== NEWS ========== */
+        .news-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+        }
+        .news-card {
+            background: var(--white); border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
+            overflow: hidden; transition: all 0.3s;
+            display: flex; flex-direction: column;
+        }
+        .news-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .news-card-image {
+            height: 180px; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+        }
+        .news-card-image::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(232,115,42,0.12), transparent 60%);
+        }
+        .news-card-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 48px; opacity: 0.2;
+        }
+        .news-card-tag {
+            position: absolute; top: 16px; left: 16px;
+            background: var(--orange); color: var(--white);
+            padding: 4px 12px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-card-body {
+            padding: 24px; flex: 1; display: flex; flex-direction: column;
+        }
+        .news-card-date {
+            font-size: 12px; font-weight: 600; color: var(--orange);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+        }
+        .news-card-body h3 {
+            font-size: 1.1rem; font-weight: 700; color: var(--navy);
+            line-height: 1.3; margin-bottom: 12px;
+        }
+        .news-card-body p {
+            font-size: 14px; color: var(--gray-600); line-height: 1.7;
+            margin-bottom: 20px; flex: 1;
+        }
+        .news-read-more {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--orange); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: all 0.2s;
+        }
+        .news-read-more:hover { color: var(--orange-hover); }
+        .news-read-more svg { width: 14px; height: 14px; transition: transform 0.3s; }
+        .news-read-more:hover svg { transform: translateX(4px); }
+
         /* ========== CONTACT ========== */
         .contact-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
@@ -368,10 +493,14 @@
             .hero-stats { flex-direction: column; gap: 24px; }
             .form-row { grid-template-columns: 1fr; }
             .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .impact-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .impact-narrative { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .section { padding: 60px 16px; }
+            .impact-stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -387,6 +516,8 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#members">Members</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -403,6 +534,8 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about" onclick="closeMobile()">About</a>
         <a href="#members" onclick="closeMobile()">Members</a>
+        <a href="#impact" onclick="closeMobile()">Impact</a>
+        <a href="#news" onclick="closeMobile()">News</a>
         <a href="#contact" onclick="closeMobile()">Contact</a>
         <div class="mobile-actions">
             <button class="lang-toggle">EN | FR</button>
@@ -422,7 +555,7 @@
             </a>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-num">22+</div>
+                    <div class="hero-stat-num">25</div>
                     <div class="hero-stat-label">Member Organizations</div>
                 </div>
                 <div class="hero-stat">
@@ -449,7 +582,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text fade-in">
-                    <div class="section-label">About Us</div>
+                    <div class="section-label" data-i18n="aboutLabel">About Us</div>
                     <h3>Protecting the Livelihood of Canada's Independent Fish Harvesters</h3>
                     <p>The Canadian Independent Fish Harvesters Federation (CIFHF) brings together fishing associations from British Columbia to Newfoundland, representing the collective voice of independent harvesters who depend on sustainable fisheries for their families and communities.</p>
                     <p>Our federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada's fishing heritage for generations.</p>
@@ -482,8 +615,8 @@
     <section class="section section-alt" id="members">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-label">Our Members</div>
-                <h2>Member Organizations by Province</h2>
+                <div class="section-label" data-i18n="membersLabel">Our Members</div>
+                <h2 data-i18n="membersTitle">Member Organizations by Province</h2>
                 <p>Our federation unites fishing associations from coast to coast, each representing the independent harvesters of their region.</p>
             </div>
 
@@ -632,12 +765,136 @@
         </div>
     </section>
 
+    <!-- Community Impact -->
+    <section class="section" id="impact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label" data-i18n="impactLabel">Community Impact</div>
+                <h2 data-i18n="impactTitle">Holding Government Accountable for Our Fisheries</h2>
+                <p data-i18n="impactSub">Our FOPO Accountability Report tracks parliamentary recommendations and measures real progress on the issues that matter most to independent fish harvesters.</p>
+            </div>
+
+            <div class="impact-stats-grid">
+                <div class="impact-stat-card fade-in">
+                    <div class="impact-stat-num">51</div>
+                    <div class="impact-stat-label" data-i18n="impactStat1Label">Recommendations Tracked</div>
+                    <div class="impact-stat-desc" data-i18n="impactStat1Desc">Across FOPO Reports 13 and 16</div>
+                </div>
+                <div class="impact-stat-card fade-in fade-in-delay-1">
+                    <div class="impact-stat-num">70</div>
+                    <div class="impact-stat-label" data-i18n="impactStat2Label">Witnesses Heard</div>
+                    <div class="impact-stat-desc" data-i18n="impactStat2Desc">Testified across both parliamentary studies</div>
+                </div>
+                <div class="impact-stat-card fade-in fade-in-delay-2">
+                    <div class="impact-stat-num">1,400+</div>
+                    <div class="impact-stat-label" data-i18n="impactStat3Label">Illegal Harvesting Reports</div>
+                    <div class="impact-stat-desc" data-i18n="impactStat3Desc">Elver poaching incidents reported in 2023</div>
+                </div>
+                <div class="impact-stat-card fade-in fade-in-delay-3">
+                    <div class="impact-stat-num">30/180</div>
+                    <div class="impact-stat-label" data-i18n="impactStat4Label">Fish Stocks Rebuilding</div>
+                    <div class="impact-stat-desc" data-i18n="impactStat4Desc">Only 30 of 180 stocks listed for rebuilding plans</div>
+                </div>
+            </div>
+
+            <div class="impact-narrative">
+                <div class="impact-narrative-text fade-in">
+                    <h3 data-i18n="impactNarrTitle">Why Accountability Matters</h3>
+                    <p data-i18n="impactNarrP1">When Parliament's Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.</p>
+                    <p data-i18n="impactNarrP2">Our Accountability Report grades the federal government's response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain&mdash;particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.</p>
+                    <p data-i18n="impactNarrP3">With $789.6 million spent on NIHB medical transportation in 2023&ndash;24 and only a fraction directed at fisheries enforcement, the allocation of federal resources demands scrutiny. Independent harvesters deserve a government that matches its commitments with action.</p>
+                </div>
+                <div class="impact-report-card fade-in fade-in-delay-2">
+                    <div class="impact-report-card-inner">
+                        <h4 data-i18n="impactReportTitle">FOPO Accountability Report</h4>
+                        <p data-i18n="impactReportDesc">Key areas covered in our comprehensive review of parliamentary recommendations:</p>
+                        <ul>
+                            <li data-i18n="impactReportItem1">Owner-operator policy protections</li>
+                            <li data-i18n="impactReportItem2">IUU fishing and enforcement gaps</li>
+                            <li data-i18n="impactReportItem3">Fish stock rebuilding commitments</li>
+                            <li data-i18n="impactReportItem4">Elver fishery crisis response</li>
+                            <li data-i18n="impactReportItem5">Federal resource allocation</li>
+                        </ul>
+                        <a href="#" class="impact-cta-link" data-i18n="impactReportCta">
+                            Read the Full Report
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section class="section section-alt" id="news">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label" data-i18n="newsLabel">News</div>
+                <h2 data-i18n="newsTitle">Latest Updates</h2>
+                <p data-i18n="newsSub">Stay informed on the issues, policy developments, and advocacy work shaping the future of independent fish harvesting in Canada.</p>
+            </div>
+
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <div class="news-card-icon">&#128220;</div>
+                        <span class="news-card-tag" data-i18n="newsTag1">Report</span>
+                    </div>
+                    <div class="news-card-body">
+                        <div class="news-card-date" data-i18n="newsDate1">February 2026</div>
+                        <h3 data-i18n="newsHeadline1">FOPO Accountability Report Published</h3>
+                        <p data-i18n="newsExcerpt1">The Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.</p>
+                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-card fade-in fade-in-delay-1">
+                    <div class="news-card-image">
+                        <div class="news-card-icon">&#127907;</div>
+                        <span class="news-card-tag" data-i18n="newsTag2">Policy</span>
+                    </div>
+                    <div class="news-card-body">
+                        <div class="news-card-date" data-i18n="newsDate2">January 2025</div>
+                        <h3 data-i18n="newsHeadline2">2025 Elver Fishery Reopens with New Regulations</h3>
+                        <p data-i18n="newsExcerpt2">After two years of closures due to rampant illegal harvesting, DFO announces the reopening of the elver fishery with strengthened oversight, new traceability requirements, and enhanced enforcement measures.</p>
+                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="news-card fade-in fade-in-delay-2">
+                    <div class="news-card-image">
+                        <div class="news-card-icon">&#9878;</div>
+                        <span class="news-card-tag" data-i18n="newsTag3">Advocacy</span>
+                    </div>
+                    <div class="news-card-body">
+                        <div class="news-card-date" data-i18n="newsDate3">December 2024</div>
+                        <h3 data-i18n="newsHeadline3">Owner-Operator Protections: What Pacific Harvesters Need to Know</h3>
+                        <p data-i18n="newsExcerpt3">As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how CIFHF is advocating for fair access.</p>
+                        <a href="#" class="news-read-more" data-i18n="newsReadMore">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section class="section" id="contact">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-label">Get In Touch</div>
-                <h2>Contact the Federation</h2>
+                <div class="section-label" data-i18n="contactLabel">Get In Touch</div>
+                <h2 data-i18n="contactTitle">Contact the Federation</h2>
                 <p>Whether you're a member organization, prospective member, or stakeholder, we welcome your inquiry.</p>
             </div>
             <div class="contact-grid">
@@ -718,12 +975,14 @@
             <ul class="footer-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#members">Members</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Canadian Independent Fish Harvesters Federation. All rights reserved.</p>
-            <p style="margin-top:8px;opacity:0.5;font-size:11px;">Demo site built by <a href="#">Ember Company</a></p>
+            <p style="margin-top:8px;opacity:0.5;font-size:11px;">Built by <a href="#">The Ember Company</a></p>
         </div>
     </footer>
 
@@ -766,7 +1025,48 @@
                 heroCta: 'Meet Our Members',
                 aboutLabel: 'About Us',
                 membersLabel: 'Our Members',
+                membersTitle: 'Member Organizations by Province',
+                impactLabel: 'Community Impact',
+                impactTitle: 'Holding Government Accountable for Our Fisheries',
+                impactSub: 'Our FOPO Accountability Report tracks parliamentary recommendations and measures real progress on the issues that matter most to independent fish harvesters.',
+                impactStat1Label: 'Recommendations Tracked',
+                impactStat1Desc: 'Across FOPO Reports 13 and 16',
+                impactStat2Label: 'Witnesses Heard',
+                impactStat2Desc: 'Testified across both parliamentary studies',
+                impactStat3Label: 'Illegal Harvesting Reports',
+                impactStat3Desc: 'Elver poaching incidents reported in 2023',
+                impactStat4Label: 'Fish Stocks Rebuilding',
+                impactStat4Desc: 'Only 30 of 180 stocks listed for rebuilding plans',
+                impactNarrTitle: 'Why Accountability Matters',
+                impactNarrP1: 'When Parliament\'s Standing Committee on Fisheries and Oceans (FOPO) issues recommendations, they represent the voices of harvesters, scientists, and coastal communities who testified under oath. But recommendations without follow-through are just words on paper.',
+                impactNarrP2: 'Our Accountability Report grades the federal government\'s response to 51 recommendations covering owner-operator protections, IUU fishing enforcement, and fisheries rebuilding. The findings are clear: progress has been made on some fronts, but critical gaps remain\u2014particularly in enforcement against illegal harvesting and rebuilding depleted fish stocks.',
+                impactNarrP3: 'With $789.6 million spent on NIHB medical transportation in 2023\u201324 and only a fraction directed at fisheries enforcement, the allocation of federal resources demands scrutiny. Independent harvesters deserve a government that matches its commitments with action.',
+                impactReportTitle: 'FOPO Accountability Report',
+                impactReportDesc: 'Key areas covered in our comprehensive review of parliamentary recommendations:',
+                impactReportItem1: 'Owner-operator policy protections',
+                impactReportItem2: 'IUU fishing and enforcement gaps',
+                impactReportItem3: 'Fish stock rebuilding commitments',
+                impactReportItem4: 'Elver fishery crisis response',
+                impactReportItem5: 'Federal resource allocation',
+                impactReportCta: 'Read the Full Report <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+                newsLabel: 'News',
+                newsTitle: 'Latest Updates',
+                newsSub: 'Stay informed on the issues, policy developments, and advocacy work shaping the future of independent fish harvesting in Canada.',
+                newsTag1: 'Report',
+                newsTag2: 'Policy',
+                newsTag3: 'Advocacy',
+                newsDate1: 'February 2026',
+                newsDate2: 'January 2025',
+                newsDate3: 'December 2024',
+                newsHeadline1: 'FOPO Accountability Report Published',
+                newsHeadline2: '2025 Elver Fishery Reopens with New Regulations',
+                newsHeadline3: 'Owner-Operator Protections: What Pacific Harvesters Need to Know',
+                newsExcerpt1: 'The Federation releases a comprehensive accountability report tracking 51 parliamentary recommendations across two major FOPO studies, grading federal progress on owner-operator protections, enforcement, and stock rebuilding.',
+                newsExcerpt2: 'After two years of closures due to rampant illegal harvesting, DFO announces the reopening of the elver fishery with strengthened oversight, new traceability requirements, and enhanced enforcement measures.',
+                newsExcerpt3: 'As discussions advance on extending Atlantic owner-operator protections to British Columbia, we break down what the policy means for Pacific harvesters, the challenges ahead, and how CIFHF is advocating for fair access.',
+                newsReadMore: 'Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
                 contactLabel: 'Get In Touch',
+                contactTitle: 'Contact the Federation',
             },
             fr: {
                 heroTitle: 'F&eacute;d&eacute;ration canadienne des<br><em>P&ecirc;cheurs</em><br>Ind&eacute;pendants',
@@ -774,7 +1074,48 @@
                 heroCta: 'Nos Membres',
                 aboutLabel: '&Agrave; Propos',
                 membersLabel: 'Nos Membres',
+                membersTitle: 'Organisations membres par province',
+                impactLabel: 'Impact Communautaire',
+                impactTitle: 'Responsabiliser le gouvernement pour nos p&ecirc;cheries',
+                impactSub: 'Notre rapport de responsabilisation du CPPO suit les recommandations parlementaires et mesure les progr&egrave;s r&eacute;els sur les enjeux les plus importants pour les p&ecirc;cheurs ind&eacute;pendants.',
+                impactStat1Label: 'Recommandations suivies',
+                impactStat1Desc: '&Agrave; travers les rapports 13 et 16 du CPPO',
+                impactStat2Label: 'T&eacute;moins entendus',
+                impactStat2Desc: 'T&eacute;moignages dans les deux &eacute;tudes parlementaires',
+                impactStat3Label: 'Signalements de p&ecirc;che ill&eacute;gale',
+                impactStat3Desc: 'Incidents de braconnage de civelles signal&eacute;s en 2023',
+                impactStat4Label: 'Stocks en reconstruction',
+                impactStat4Desc: 'Seulement 30 des 180 stocks inscrits aux plans de reconstruction',
+                impactNarrTitle: 'Pourquoi la responsabilisation compte',
+                impactNarrP1: 'Lorsque le Comit&eacute; permanent des p&ecirc;ches et des oc&eacute;ans (CPPO) &eacute;met des recommandations, elles repr&eacute;sentent la voix des p&ecirc;cheurs, des scientifiques et des communaut&eacute;s c&ocirc;ti&egrave;res qui ont t&eacute;moign&eacute; sous serment. Mais des recommandations sans suivi ne sont que des mots sur papier.',
+                impactNarrP2: 'Notre rapport &eacute;value la r&eacute;ponse du gouvernement f&eacute;d&eacute;ral &agrave; 51 recommandations couvrant les protections propri&eacute;taire-exploitant, l\'application de la loi contre la p&ecirc;che INN et la reconstruction des p&ecirc;cheries. Les constats sont clairs\u00a0: des progr&egrave;s ont &eacute;t&eacute; r&eacute;alis&eacute;s sur certains fronts, mais des lacunes critiques persistent.',
+                impactNarrP3: 'Avec 789,6 millions de dollars consacr&eacute;s au transport m&eacute;dical du SSNA en 2023-24 et seulement une fraction dirig&eacute;e vers l\'application des r&egrave;gles de p&ecirc;che, l\'allocation des ressources f&eacute;d&eacute;rales m&eacute;rite un examen approfondi.',
+                impactReportTitle: 'Rapport de responsabilisation du CPPO',
+                impactReportDesc: 'Domaines cl&eacute;s couverts dans notre examen complet des recommandations parlementaires\u00a0:',
+                impactReportItem1: 'Protections de la politique propri&eacute;taire-exploitant',
+                impactReportItem2: 'P&ecirc;che INN et lacunes d\'application',
+                impactReportItem3: 'Engagements de reconstruction des stocks',
+                impactReportItem4: 'R&eacute;ponse &agrave; la crise de la p&ecirc;che aux civelles',
+                impactReportItem5: 'Allocation des ressources f&eacute;d&eacute;rales',
+                impactReportCta: 'Lire le rapport complet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+                newsLabel: 'Actualit&eacute;s',
+                newsTitle: 'Derni&egrave;res nouvelles',
+                newsSub: 'Restez inform&eacute; des enjeux, des d&eacute;veloppements politiques et du travail de d&eacute;fense qui fa&ccedil;onnent l\'avenir de la p&ecirc;che ind&eacute;pendante au Canada.',
+                newsTag1: 'Rapport',
+                newsTag2: 'Politique',
+                newsTag3: 'Plaidoyer',
+                newsDate1: 'F&eacute;vrier 2026',
+                newsDate2: 'Janvier 2025',
+                newsDate3: 'D&eacute;cembre 2024',
+                newsHeadline1: 'Publication du rapport de responsabilisation du CPPO',
+                newsHeadline2: 'La p&ecirc;che aux civelles 2025 rouvre avec de nouvelles r&eacute;glementations',
+                newsHeadline3: 'Protections propri&eacute;taire-exploitant\u00a0: ce que les p&ecirc;cheurs du Pacifique doivent savoir',
+                newsExcerpt1: 'La F&eacute;d&eacute;ration publie un rapport complet de responsabilisation suivant 51 recommandations parlementaires &agrave; travers deux grandes &eacute;tudes du CPPO, &eacute;valuant les progr&egrave;s f&eacute;d&eacute;raux en mati&egrave;re de protections, d\'application et de reconstruction des stocks.',
+                newsExcerpt2: 'Apr&egrave;s deux ans de fermetures dues au braconnage g&eacute;n&eacute;ralis&eacute;, le MPO annonce la r&eacute;ouverture de la p&ecirc;che aux civelles avec une surveillance renforc&eacute;e, de nouvelles exigences de tra&ccedil;abilit&eacute; et des mesures d\'application am&eacute;lior&eacute;es.',
+                newsExcerpt3: '&Agrave; mesure que les discussions progressent sur l\'extension des protections propri&eacute;taire-exploitant de l\'Atlantique &agrave; la Colombie-Britannique, nous analysons ce que la politique signifie pour les p&ecirc;cheurs du Pacifique et les d&eacute;fis &agrave; venir.',
+                newsReadMore: 'Lire la suite <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
                 contactLabel: 'Contactez-Nous',
+                contactTitle: 'Contacter la F&eacute;d&eacute;ration',
             }
         };
 
@@ -782,12 +1123,21 @@
             btn.addEventListener('click', () => {
                 isEN = !isEN;
                 const t = isEN ? translations.en : translations.fr;
+
+                // Hero section
                 document.querySelector('.hero h1').innerHTML = t.heroTitle;
                 document.querySelector('.hero p').innerHTML = t.heroSub;
                 document.querySelector('.hero-cta').innerHTML = t.heroCta + ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-                document.querySelectorAll('.section-label')[0].innerHTML = t.aboutLabel;
-                document.querySelectorAll('.section-label')[1].innerHTML = t.membersLabel;
-                document.querySelectorAll('.section-label')[2].innerHTML = t.contactLabel;
+
+                // All data-i18n elements
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t[key] !== undefined) {
+                        el.innerHTML = t[key];
+                    }
+                });
+
+                // Toggle button text
                 document.querySelectorAll('.lang-toggle').forEach(b => {
                     b.textContent = isEN ? 'EN | FR' : 'FR | EN';
                 });
@@ -807,4 +1157,3 @@
     </script>
 </body>
 </html>
-
