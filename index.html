@@ -26,44 +26,74 @@
         html { scroll-behavior: smooth; }
         body { font-family: var(--font); color: var(--text); line-height: 1.7; background: var(--bg); }
 
-        /* ===== NAV ===== */
-        .nav {
+        /* ===== HEADER WRAPPER ===== */
+        .site-header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(50,55,60,0.97); backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
             transition: box-shadow 0.3s;
         }
-        .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+        .site-header.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+
+        /* ===== UTILITY BAR (top thin dark strip) ===== */
+        .utility-bar {
+            background: #32373c; padding: 0 24px; height: 32px;
+            display: flex; align-items: center; justify-content: flex-end;
+        }
+        .utility-bar-inner {
+            max-width: 1140px; width: 100%; margin: 0 auto;
+            display: flex; align-items: center; justify-content: flex-end;
+        }
+        .lang-toggle {
+            background: none; border: none;
+            color: rgba(255,255,255,0.7); padding: 4px 10px;
+            font-size: 12px; font-weight: 600; cursor: pointer;
+            font-family: var(--font); transition: color 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .lang-toggle:hover { color: #fff; }
+
+        /* ===== LOGO AREA (white, tall, centered) ===== */
+        .logo-area {
+            background: #ffffff; padding: 18px 24px;
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .logo-area a { display: flex; align-items: center; justify-content: center; }
+        .logo-area img {
+            height: 90px; display: block; max-width: 100%;
+        }
+
+        /* ===== NAV BAR (light gray, page links centered) ===== */
+        .nav {
+            background: #f5f5f5; border-bottom: 1px solid #ddd;
+        }
         .nav-inner {
             max-width: 1140px; margin: 0 auto; padding: 0 24px;
-            display: flex; align-items: center; height: 70px;
+            display: flex; align-items: center; justify-content: center; height: 46px;
         }
-        .nav-logo img { height: 45px; display: block; }
         .nav-links {
-            list-style: none; display: flex; gap: 4px; margin-left: auto;
+            list-style: none; display: flex; gap: 0; justify-content: center;
         }
         .nav-links a {
-            color: rgba(255,255,255,0.75); text-decoration: none;
-            font-size: 14px; font-weight: 600; padding: 8px 14px;
-            border-radius: 4px; transition: all 0.2s; cursor: pointer;
+            color: #444; text-decoration: none;
+            font-size: 13px; font-weight: 600; padding: 12px 16px;
+            transition: all 0.2s; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            border-bottom: 2px solid transparent;
+            display: block; line-height: 20px;
         }
-        .nav-links a:hover, .nav-links a.active {
-            color: #fff; background: rgba(255,255,255,0.1);
+        .nav-links a:hover {
+            color: #222; background: rgba(0,0,0,0.03);
         }
-        .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: 16px; }
-        .lang-toggle {
-            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-            color: #fff; padding: 6px 14px; border-radius: 4px;
-            font-size: 13px; font-weight: 600; cursor: pointer;
-            font-family: var(--font); transition: all 0.2s;
+        .nav-links a.active {
+            color: #222; border-bottom-color: #32373c; font-weight: 700;
         }
-        .lang-toggle:hover { background: rgba(255,255,255,0.2); }
+        .nav-actions { display: none; }
         .hamburger {
             display: none; background: none; border: none; cursor: pointer;
-            width: 32px; height: 24px; position: relative; margin-left: auto;
+            width: 32px; height: 24px; position: relative;
         }
         .hamburger span {
-            display: block; width: 100%; height: 2px; background: #fff;
+            display: block; width: 100%; height: 2px; background: #444;
             position: absolute; left: 0; transition: all 0.3s;
         }
         .hamburger span:nth-child(1) { top: 0; }
@@ -75,20 +105,21 @@
 
         /* ===== MOBILE MENU ===== */
         .mobile-menu {
-            display: none; position: fixed; top: 70px; left: 0; right: 0;
-            background: var(--heading); padding: 16px 24px;
-            border-bottom: 3px solid var(--border);
+            display: none; position: fixed; top: 204px; left: 0; right: 0;
+            background: #f5f5f5; padding: 16px 24px;
+            border-bottom: 2px solid #ddd;
             transform: translateY(-120%); transition: transform 0.3s;
             z-index: 999;
         }
         .mobile-menu.open { transform: translateY(0); }
         .mobile-menu a {
-            display: block; color: rgba(255,255,255,0.8); text-decoration: none;
-            padding: 12px 0; font-size: 15px; font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+            display: block; color: #444; text-decoration: none;
+            padding: 12px 0; font-size: 14px; font-weight: 600;
+            border-bottom: 1px solid #e0e0e0; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .mobile-menu a:hover { color: #fff; }
-        .mobile-actions { display: flex; gap: 10px; margin-top: 16px; }
+        .mobile-menu a:hover { color: #222; }
+        .mobile-actions { display: none; }
 
         /* ===== PAGE SECTIONS ===== */
         .page { display: none; }
@@ -96,7 +127,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 140px 24px 80px; text-align: center;
+            padding: 260px 24px 80px; text-align: center;
             background: var(--heading); color: var(--white);
             position: relative; overflow: hidden;
         }
@@ -473,7 +504,11 @@
         @media (max-width: 900px) {
             .nav-links, .nav-actions { display: none; }
             .hamburger { display: block; }
-            .mobile-menu { display: block; }
+            .nav-inner { justify-content: flex-end; }
+            .mobile-menu { display: block; top: 164px; }
+            .logo-area img { height: 60px; }
+            .logo-area { padding: 12px 24px; }
+            .hero { padding-top: 200px; }
             .about-grid, .contact-grid, .impact-narrative, .policy-columns { grid-template-columns: 1fr; }
             .members-grid { grid-template-columns: 1fr; }
             .objectives-grid { grid-template-columns: 1fr; }
@@ -488,6 +523,10 @@
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
+            .hero { padding-top: 180px; }
+            .logo-area img { height: 50px; }
+            .logo-area { padding: 10px 24px; }
+            .mobile-menu { top: 148px; }
             .section { padding: 60px 16px; }
             .impact-stats-grid { grid-template-columns: 1fr; }
             .exec-grid { grid-template-columns: 1fr; }
@@ -496,30 +535,39 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo" onclick="navigateTo('home'); return false;">
-                <img src="https://fed-fede.ca/wp-content/uploads/2015/10/logo_en.png" alt="Canadian Independent Fish Harvesters Federation">
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a onclick="navigateTo('home')" data-page="home" data-i18n="navHome">Home</a></li>
-                <li><a onclick="navigateTo('about')" data-page="about" data-i18n="navAbout">About Us</a></li>
-                <li><a onclick="navigateTo('objectives')" data-page="objectives" data-i18n="navObjectives">Objectives</a></li>
-                <li><a onclick="navigateTo('members')" data-page="members" data-i18n="navMembers">Our Members</a></li>
-                <li><a onclick="navigateTo('executive')" data-page="executive" data-i18n="navExec">Executive</a></li>
-                <li><a onclick="navigateTo('impact')" data-page="impact" data-i18n="navImpact">Impact</a></li>
-                <li><a onclick="navigateTo('news')" data-page="news" data-i18n="navNews">News</a></li>
-                <li><a onclick="navigateTo('contact')" data-page="contact" data-i18n="navContact">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
+    <!-- Site Header: Utility Bar + Logo Area + Nav Bar -->
+    <header class="site-header" id="siteHeader">
+        <!-- 1. Utility bar — dark, thin, language toggle right-aligned -->
+        <div class="utility-bar">
+            <div class="utility-bar-inner">
                 <button class="lang-toggle" id="langToggle">EN | FR</button>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
         </div>
-    </nav>
+        <!-- 2. Logo area — white, large centered logo -->
+        <div class="logo-area">
+            <a href="#" onclick="navigateTo('home'); return false;">
+                <img src="https://fed-fede.ca/wp-content/uploads/2015/10/logo_en.png" alt="Canadian Independent Fish Harvesters Federation">
+            </a>
+        </div>
+        <!-- 3. Nav bar — light gray, page links centered -->
+        <nav class="nav" id="nav">
+            <div class="nav-inner">
+                <ul class="nav-links" id="navLinks">
+                    <li><a onclick="navigateTo('home')" data-page="home" data-i18n="navHome">Home</a></li>
+                    <li><a onclick="navigateTo('about')" data-page="about" data-i18n="navAbout">About Us</a></li>
+                    <li><a onclick="navigateTo('objectives')" data-page="objectives" data-i18n="navObjectives">Objectives</a></li>
+                    <li><a onclick="navigateTo('members')" data-page="members" data-i18n="navMembers">Our Members</a></li>
+                    <li><a onclick="navigateTo('executive')" data-page="executive" data-i18n="navExec">Executive</a></li>
+                    <li><a onclick="navigateTo('impact')" data-page="impact" data-i18n="navImpact">Impact</a></li>
+                    <li><a onclick="navigateTo('news')" data-page="news" data-i18n="navNews">News</a></li>
+                    <li><a onclick="navigateTo('contact')" data-page="contact" data-i18n="navContact">Contact</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -1210,10 +1258,10 @@
             }, 50);
         }
 
-        // ===== Scroll Nav Shadow =====
-        const nav = document.getElementById('nav');
+        // ===== Scroll Header Shadow =====
+        const siteHeader = document.getElementById('siteHeader');
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
+            siteHeader.classList.toggle('scrolled', window.scrollY > 50);
         });
 
         // ===== Mobile Menu =====
