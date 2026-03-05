@@ -546,7 +546,7 @@
         <!-- 2. Logo area — white, large centered logo -->
         <div class="logo-area">
             <a href="#" onclick="navigateTo('home'); return false;">
-                <img src="https://fed-fede.ca/wp-content/uploads/2015/10/logo_en.png" alt="Canadian Independent Fish Harvesters Federation">
+                <img src="logo_en.png" alt="Canadian Independent Fish Harvesters Federation">
             </a>
         </div>
         <!-- 3. Nav bar — light gray, page links centered -->
@@ -1204,7 +1204,7 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-logo">
-                <img src="https://fed-fede.ca/wp-content/uploads/2015/09/logo-footer-white.png" alt="Canadian Independent Fish Harvesters Federation">
+                <img src="logo-footer-white.png" alt="Canadian Independent Fish Harvesters Federation">
             </div>
             <ul class="footer-links">
                 <li><a onclick="navigateTo('home')" data-i18n="navHome">Home</a></li>
@@ -1505,6 +1505,13 @@
             btn.addEventListener('click', () => {
                 isEN = !isEN;
                 applyLang(isEN ? 'en' : 'fr');
+            });
+        });
+
+        // Read More: prevent jump-to-top (full articles coming soon)
+        document.querySelectorAll('.news-read-more').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
             });
         });
     </script>
