@@ -135,6 +135,12 @@
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(135deg, rgba(50,55,60,0.95), rgba(50,55,60,0.8));
         }
+        .hero-with-photo {
+            background: url('photos/IMG_1270.jpeg') center center / cover no-repeat;
+        }
+        .hero-with-photo::before {
+            background: linear-gradient(135deg, rgba(50,55,60,0.82), rgba(50,55,60,0.65));
+        }
         .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
         .hero-badge {
             display: inline-block; font-size: 12px; font-weight: 700;
@@ -490,6 +496,84 @@
         .footer-bottom a { color: rgba(255,255,255,0.8); text-decoration: none; }
         .footer-bottom a:hover { color: #fff; }
 
+        /* ===== PHOTO GALLERY ===== */
+        .photo-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .photo-gallery-item {
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .photo-gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .photo-gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .photo-gallery-item .photo-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+            padding: 24px 16px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .photo-gallery-item.tall {
+            grid-row: span 2;
+        }
+        .photo-gallery-item.tall img {
+            height: 576px;
+        }
+
+        /* ===== PHOTO BANNER (between sections) ===== */
+        .photo-banner {
+            position: relative;
+            height: 340px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-banner img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(50,55,60,0.75), rgba(50,55,60,0.55));
+        }
+        .photo-banner-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+            max-width: 700px;
+            padding: 0 24px;
+        }
+        .photo-banner-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .photo-banner-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
         /* ===== FADE-IN ===== */
         .fade-in {
             opacity: 0; transform: translateY(24px);
@@ -520,6 +604,10 @@
             .impact-stats-grid { grid-template-columns: repeat(2, 1fr); }
             .news-grid { grid-template-columns: 1fr; }
             .exec-grid { grid-template-columns: repeat(2, 1fr); }
+            .photo-gallery-grid { grid-template-columns: 1fr 1fr; }
+            .photo-gallery-item.tall { grid-row: span 1; }
+            .photo-gallery-item.tall img { height: 280px; }
+            .photo-banner { height: 260px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
@@ -530,6 +618,10 @@
             .section { padding: 60px 16px; }
             .impact-stats-grid { grid-template-columns: 1fr; }
             .exec-grid { grid-template-columns: 1fr; }
+            .photo-gallery-grid { grid-template-columns: 1fr; }
+            .photo-gallery-item img, .photo-gallery-item.tall img { height: 220px; }
+            .photo-banner { height: 200px; }
+            .photo-banner-content h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -586,7 +678,7 @@
 
     <!-- ==================== HOME ==================== -->
     <div class="page active" id="page-home">
-        <section class="hero">
+        <section class="hero hero-with-photo">
             <div class="hero-content">
                 <div class="hero-badge" data-i18n="heroBadge">United Voice for Independent Harvesters</div>
                 <h1 data-i18n="heroTitle">Canadian Independent<br><em>Fish Harvesters</em><br>Federation</h1>
@@ -625,11 +717,55 @@
                         <p data-i18n="homeAboutP1">The Canadian Independent Fish Harvesters Federation advocates at the national level for policies that protect the owner-operator principle, ensure fair access to marine resources, and support the coastal communities that have sustained Canada's fishing heritage for generations.</p>
                         <p data-i18n="homeAboutP2">Our federation represents member organizations across six provinces, from the Pacific to the Atlantic, united in the belief that those who fish should control their licences and their livelihoods.</p>
                     </div>
-                    <div class="about-visual fade-in fade-in-delay-2">
-                        <div class="about-visual-content">
+                    <div class="about-visual fade-in fade-in-delay-2" style="background: url('photos/DJI_20241116062108_0092_D.jpeg') center center / cover no-repeat; position: relative;">
+                        <div style="position:absolute;inset:0;background:rgba(50,55,60,0.6);border-radius:4px;"></div>
+                        <div class="about-visual-content" style="position:relative;z-index:1;">
                             <div class="big-num">6</div>
                             <p data-i18n="homeVisualP">Provinces represented<br>coast to coast</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Banner -->
+        <div class="photo-banner">
+            <img src="photos/DJI_20241116065124_0107_D.jpeg" alt="Fishing fleet heading out at dawn, aerial drone view of boats with navigation lights scattered across the bay" loading="lazy">
+            <div class="photo-banner-overlay"></div>
+            <div class="photo-banner-content">
+                <h2 data-i18n="bannerTitle">Canada's Fishing Fleet at Work</h2>
+                <p data-i18n="bannerSub">From before dawn to after dark, independent harvesters sustain their families and communities on every coast.</p>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label" data-i18n="galleryLabel">From the Water</div>
+                    <h2 data-i18n="galleryTitle">Life on Canada's Fishing Grounds</h2>
+                    <p data-i18n="gallerySub">Real images from the harbours, wharves, and waters where independent fish harvesters work every day.</p>
+                </div>
+                <div class="photo-gallery-grid">
+                    <div class="photo-gallery-item tall fade-in">
+                        <img src="photos/IMG_1412.jpeg" alt="Fishing vessel number 106626 with green hull loaded with lobster traps, heading out to sea at night" loading="lazy">
+                        <div class="photo-caption" data-i18n="galleryCaption1">Heading out -- traps loaded, ready for the season</div>
+                    </div>
+                    <div class="photo-gallery-item fade-in fade-in-delay-1">
+                        <img src="photos/DJI_20241116061042_0088_D.jpeg" alt="Aerial drone night shot of fishing harbour with lit wharves and fishing fleet docked" loading="lazy">
+                        <div class="photo-caption" data-i18n="galleryCaption2">Harbour lights before dawn</div>
+                    </div>
+                    <div class="photo-gallery-item fade-in fade-in-delay-2">
+                        <img src="photos/IMG_1406.jpeg" alt="Close-up of fishing vessel Brittany and Madison from Yarmouth Nova Scotia with lobster traps and gear" loading="lazy">
+                        <div class="photo-caption" data-i18n="galleryCaption3">Brittany &amp; Madison -- Yarmouth, NS</div>
+                    </div>
+                    <div class="photo-gallery-item fade-in fade-in-delay-1">
+                        <img src="photos/DJI_20241116062108_0092_D.jpeg" alt="Fishing harbour at night with boats and reflections on calm water" loading="lazy">
+                        <div class="photo-caption" data-i18n="galleryCaption4">Still waters, working harbour</div>
+                    </div>
+                    <div class="photo-gallery-item fade-in fade-in-delay-2">
+                        <img src="photos/IMG_1270.jpeg" alt="Fishing boats on drydock at sunset with moon visible against a beautiful pink and blue sky" loading="lazy">
+                        <div class="photo-caption" data-i18n="galleryCaption5">Drydock at sunset -- getting ready for the season</div>
                     </div>
                 </div>
             </div>
@@ -638,7 +774,7 @@
 
     <!-- ==================== ABOUT US ==================== -->
     <div class="page" id="page-about">
-        <section class="hero" style="padding-bottom: 60px;">
+        <section class="hero hero-with-photo" style="padding-bottom: 60px; background-image: url('photos/DJI_20241116065124_0107_D.jpeg');">
             <div class="hero-content">
                 <div class="hero-badge" data-i18n="aboutBadge">Who We Are</div>
                 <h1 data-i18n="aboutHeroTitle">About the Canadian Independent<br><em>Fish Harvesters Federation</em></h1>
@@ -669,8 +805,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="about-visual fade-in fade-in-delay-2">
-                        <div class="about-visual-content">
+                    <div class="about-visual fade-in fade-in-delay-2" style="background: url('photos/IMG_1406.jpeg') center center / cover no-repeat; position: relative;">
+                        <div style="position:absolute;inset:0;background:rgba(50,55,60,0.55);border-radius:4px;"></div>
+                        <div class="about-visual-content" style="position:relative;z-index:1;">
                             <div class="big-num">2012</div>
                             <p data-i18n="aboutVisualP">Decades of advocacy for<br>independent fish harvesters</p>
                         </div>
@@ -796,7 +933,7 @@
 
     <!-- ==================== MEMBERS ==================== -->
     <div class="page" id="page-members">
-        <section class="hero" style="padding-bottom: 60px;">
+        <section class="hero hero-with-photo" style="padding-bottom: 60px; background-image: url('photos/DJI_20241116061042_0088_D.jpeg');">
             <div class="hero-content">
                 <div class="hero-badge" data-i18n="membersBadge">Coast to Coast</div>
                 <h1 data-i18n="membersHeroTitle">Member Organizations of the<br><em>Canadian Independent Fish Harvesters Federation</em></h1>
@@ -983,7 +1120,7 @@
 
     <!-- ==================== COMMUNITY IMPACT ==================== -->
     <div class="page" id="page-impact">
-        <section class="hero" style="padding-bottom: 60px;">
+        <section class="hero hero-with-photo" style="padding-bottom: 60px; background-image: url('photos/IMG_1412.jpeg');">
             <div class="hero-content">
                 <div class="hero-badge" data-i18n="impactBadge">Accountability</div>
                 <h1 data-i18n="impactHeroTitle">Community Impact &amp;<br><em>FOPO Accountability</em></h1>
@@ -1382,6 +1519,16 @@
                 contactSubOpt0: 'Select a topic...', contactSubOpt1: 'Membership Inquiry', contactSubOpt2: 'Policy & Advocacy',
                 contactSubOpt3: 'Media & Press', contactSubOpt4: 'Partnership Opportunity', contactSubOpt5: 'General Question',
                 footerRights: 'All rights reserved.',
+                bannerTitle: 'Canada\'s Fishing Fleet at Work',
+                bannerSub: 'From before dawn to after dark, independent harvesters sustain their families and communities on every coast.',
+                galleryLabel: 'From the Water',
+                galleryTitle: 'Life on Canada\'s Fishing Grounds',
+                gallerySub: 'Real images from the harbours, wharves, and waters where independent fish harvesters work every day.',
+                galleryCaption1: 'Heading out -- traps loaded, ready for the season',
+                galleryCaption2: 'Harbour lights before dawn',
+                galleryCaption3: 'Brittany & Madison -- Yarmouth, NS',
+                galleryCaption4: 'Still waters, working harbour',
+                galleryCaption5: 'Drydock at sunset -- getting ready for the season',
             },
             fr: {
                 navHome: 'Accueil', navAbout: '\u00c0 Propos', navObjectives: 'Objectifs',
@@ -1486,6 +1633,16 @@
                 contactSubOpt0: 'S\u00e9lectionnez un sujet...', contactSubOpt1: 'Demande d\u2019adh\u00e9sion', contactSubOpt2: 'Politique et plaidoyer',
                 contactSubOpt3: 'M\u00e9dias et presse', contactSubOpt4: 'Opportunit\u00e9 de partenariat', contactSubOpt5: 'Question g\u00e9n\u00e9rale',
                 footerRights: 'Tous droits r\u00e9serv\u00e9s.',
+                bannerTitle: 'La flotte de p\u00eache du Canada au travail',
+                bannerSub: 'De l\u2019aube au cr\u00e9puscule, les p\u00eacheurs ind\u00e9pendants soutiennent leurs familles et communaut\u00e9s sur chaque c\u00f4te.',
+                galleryLabel: 'Depuis les eaux',
+                galleryTitle: 'La vie sur les lieux de p\u00eache du Canada',
+                gallerySub: 'Images r\u00e9elles des ports, quais et eaux o\u00f9 les p\u00eacheurs ind\u00e9pendants travaillent chaque jour.',
+                galleryCaption1: 'En route \u2014 casiers charg\u00e9s, pr\u00eat pour la saison',
+                galleryCaption2: 'Les lumi\u00e8res du port avant l\u2019aube',
+                galleryCaption3: 'Brittany & Madison \u2014 Yarmouth, N-\u00c9',
+                galleryCaption4: 'Eaux calmes, port actif',
+                galleryCaption5: 'Cale s\u00e8che au coucher du soleil \u2014 pr\u00e9paration pour la saison',
             }
         };
 
