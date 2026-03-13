@@ -331,8 +331,10 @@
             width: 100%; height: 260px; background: var(--gray-light);
             display: flex; align-items: center; justify-content: center;
             border-bottom: 1px solid var(--border);
+            overflow: hidden;
         }
         .exec-photo svg { width: 80px; height: 80px; fill: var(--border); }
+        .exec-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
         .exec-card-body { padding: 20px; }
         .exec-card-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
         .exec-card-body p { font-size: 14px; color: var(--text); }
@@ -1097,7 +1099,7 @@
                 <div class="exec-grid">
                     <div class="exec-card fade-in">
                         <div class="exec-photo">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="38" r="18"/><ellipse cx="50" cy="82" rx="30" ry="20"/></svg>
+                            <img src="photos/melanie_sonnenberg.jpeg" alt="Melanie Sonnenberg, President of CIFHF">
                         </div>
                         <div class="exec-card-body">
                             <h3>Melanie Sonnenberg</h3>
