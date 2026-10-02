@@ -535,6 +535,13 @@
             font-size: 13px; color: var(--accent-light); background: var(--gray-mid);
             border-radius: 4px; padding: 10px 14px; margin-bottom: 16px; line-height: 1.6;
         }
+        .form-status {
+            font-size: 13px; border-radius: 4px; padding: 10px 14px; margin-bottom: 16px;
+            line-height: 1.6; display: none;
+        }
+        .form-status:not(:empty) { display: block; }
+        .form-status-ok { background: #e6f4ea; color: #1e4620; }
+        .form-status-error { background: #fdecea; color: #611a15; }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -1462,8 +1469,9 @@
                     </div>
                     <div class="contact-form fade-in fade-in-delay-2">
                         <h3 data-i18n="contactFormH">Send Us a Message</h3>
-                        <p class="form-note" data-i18n="contactFormNote">This form isn't connected to an inbox yet &mdash; we're working on it. Thank you for your patience.</p>
-                        <form onsubmit="event.preventDefault(); return false;">
+                        <p class="form-note" id="contactFormNote" data-i18n="contactFormNote">This form isn't connected to an inbox yet &mdash; we're working on it. Thank you for your patience.</p>
+                        <div id="contactFormStatus" role="status" aria-live="polite"></div>
+                        <form id="contactForm" onsubmit="event.preventDefault(); return false;">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="fname" data-i18n="contactFName">First Name</label>
@@ -1493,7 +1501,18 @@
                                 <label for="message" data-i18n="contactMsg">Message</label>
                                 <textarea id="message" placeholder="How can we help?" data-i18n-placeholder="phMessage"></textarea>
                             </div>
-                            <button type="submit" class="btn-submit" data-i18n="contactSend" disabled aria-disabled="true" title="Not connected yet">Send Message</button>
+                            <!-- Honeypot: real visitors never see this (off-screen + aria-hidden + not
+                                 reachable by Tab). A filled honeypot is a strong bot signal, checked
+                                 server-side in functions/api/contact.js. -->
+                            <div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+                                <label for="hp_website">Website</label>
+                                <input type="text" id="hp_website" name="website" tabindex="-1" autocomplete="off">
+                            </div>
+                            <!-- Minimum-fill-time signal: set to the load timestamp when the Contact
+                                 page's script runs; the server rejects a submission that arrives
+                                 faster than a human could plausibly fill the form. -->
+                            <input type="hidden" id="formRenderedAt" value="">
+                            <button type="submit" class="btn-submit" id="contactSubmitBtn" data-i18n="contactSend" disabled aria-disabled="true" title="Not connected yet">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -1740,6 +1759,8 @@
                 contactSubOpt3: 'Media & Press', contactSubOpt4: 'Partnership Opportunity', contactSubOpt5: 'General Question',
                 phFirstName: 'Your first name', phLastName: 'Your last name', phEmail: 'you@example.com', phMessage: 'How can we help?',
                 contactFormNote: 'This form isn’t connected to an inbox yet — we’re working on it. Thank you for your patience.',
+                contactFormSuccess: 'Thank you — your message has been sent. We’ll be in touch soon.',
+                contactFormError: 'Sorry, we couldn’t send your message. Please try again later, or email us directly.',
                 footerRights: 'All rights reserved.',
                 footerBuiltByPrefix: 'Built by',
                 bannerTitle: 'Canada\'s Fishing Fleet at Work',
@@ -1874,6 +1895,8 @@
                 contactSubOpt3: 'M\u00e9dias et presse', contactSubOpt4: 'Opportunit\u00e9 de partenariat', contactSubOpt5: 'Question g\u00e9n\u00e9rale',
                 phFirstName: 'Votre pr\u00e9nom', phLastName: 'Votre nom de famille', phEmail: 'vous@exemple.com', phMessage: 'Comment pouvons-nous vous aider?',
                 contactFormNote: 'Ce formulaire n\u2019est pas encore reli\u00e9 \u00e0 une bo\u00eete de r\u00e9ception \u2014 nous y travaillons. Merci de votre patience.',
+                contactFormSuccess: 'Merci \u2014 votre message a \u00e9t\u00e9 envoy\u00e9. Nous communiquerons avec vous bient\u00f4t.',
+                contactFormError: 'D\u00e9sol\u00e9, nous n\u2019avons pas pu envoyer votre message. Veuillez r\u00e9essayer plus tard, ou nous \u00e9crire directement.',
                 footerRights: 'Tous droits r\u00e9serv\u00e9s.',
                 footerBuiltByPrefix: 'D\u00e9velopp\u00e9 par',
                 bannerTitle: 'La flotte de p\u00eache du Canada au travail',
@@ -1962,6 +1985,107 @@
             if (hash && hash !== 'home' && VALID_PAGES.indexOf(hash) !== -1) {
                 navigateTo(hash, true);
             }
+        })();
+
+        // =====================================================================
+        // Contact form -> /api/contact (Cloudflare Pages Function)
+        //
+        // Honesty rule (stage 1c): the form NEVER claims success unless the
+        // backend actually confirmed the send. Today, on GitHub Pages, there
+        // is no /api/contact, so the cheap reachability check below fails and
+        // the form stays exactly as stage 1b left it -- disabled, with the
+        // "not connected yet" note. Nothing below changes that until the
+        // function is actually deployed (Peter/Melanie's call, see
+        // DEPLOY_CONTACT.md).
+        // =====================================================================
+        (function contactFormSetup() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const noteEl = document.getElementById('contactFormNote');
+            const statusEl = document.getElementById('contactFormStatus');
+            const renderedAtField = document.getElementById('formRenderedAt');
+            if (!form || !submitBtn || !noteEl || !statusEl || !renderedAtField) return;
+
+            renderedAtField.value = String(Date.now());
+
+            function currentLang() {
+                return document.documentElement.lang === 'fr' ? 'fr' : 'en';
+            }
+
+            function showStatus(key) {
+                const t = tr[currentLang()];
+                statusEl.textContent = t[key] || '';
+                statusEl.className = key === 'contactFormSuccess' ? 'form-status form-status-ok'
+                    : key === 'contactFormError' ? 'form-status form-status-error' : '';
+            }
+
+            // Cheap reachability check: OPTIONS the endpoint. A deployed Pages
+            // Function (even POST-only) answers something other than 404; a
+            // site still on GitHub Pages (or any host with no function there)
+            // 404s, and a network failure throws -- both read as "not ready".
+            async function endpointReachable() {
+                try {
+                    const res = await fetch('/api/contact', { method: 'OPTIONS', cache: 'no-store' });
+                    return res.status !== 404;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            async function handleSubmit(e) {
+                e.preventDefault();
+                submitBtn.disabled = true;
+
+                const payload = {
+                    name: [document.getElementById('fname').value, document.getElementById('lname').value]
+                        .map(v => v.trim()).filter(Boolean).join(' '),
+                    email: document.getElementById('email').value.trim(),
+                    subject: (function () {
+                        const sel = document.getElementById('subject');
+                        return sel && sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].textContent : '';
+                    })(),
+                    message: document.getElementById('message').value.trim(),
+                    website: document.getElementById('hp_website').value, // honeypot -- should stay empty
+                    formRenderedAt: Number(renderedAtField.value),
+                };
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+                    let data;
+                    try { data = await res.json(); } catch (parseErr) { data = { ok: false }; }
+
+                    if (res.ok && data && data.ok === true) {
+                        showStatus('contactFormSuccess');
+                        form.reset();
+                        renderedAtField.value = String(Date.now());
+                    } else {
+                        // Never claim success on a non-2xx or ok:false response.
+                        showStatus('contactFormError');
+                    }
+                } catch (networkErr) {
+                    showStatus('contactFormError');
+                } finally {
+                    submitBtn.disabled = false;
+                }
+            }
+
+            endpointReachable().then(reachable => {
+                if (reachable) {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-disabled');
+                    submitBtn.removeAttribute('title');
+                    noteEl.style.display = 'none';
+                    form.addEventListener('submit', handleSubmit);
+                }
+                // If not reachable: leave the button disabled and the existing
+                // "not connected yet" note exactly as stage 1b built it. The
+                // form's inline onsubmit (preventDefault/return false) is the
+                // final backstop against any accidental claim.
+            });
         })();
     </script>
 </body>
