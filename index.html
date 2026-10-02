@@ -483,6 +483,11 @@
             cursor: pointer; transition: background 0.2s; font-family: var(--font);
         }
         .btn-submit:hover { background: var(--accent-light); }
+        .btn-submit:disabled { background: var(--border); color: var(--text); cursor: not-allowed; }
+        .form-note {
+            font-size: 13px; color: var(--accent-light); background: var(--gray-mid);
+            border-radius: 4px; padding: 10px 14px; margin-bottom: 16px; line-height: 1.6;
+        }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -1403,7 +1408,8 @@
                     </div>
                     <div class="contact-form fade-in fade-in-delay-2">
                         <h3 data-i18n="contactFormH">Send Us a Message</h3>
-                        <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will be in touch shortly.');">
+                        <p class="form-note" data-i18n="contactFormNote">This form isn't connected to an inbox yet &mdash; we're working on it. Thank you for your patience.</p>
+                        <form onsubmit="event.preventDefault(); return false;">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="fname" data-i18n="contactFName">First Name</label>
@@ -1433,7 +1439,7 @@
                                 <label for="message" data-i18n="contactMsg">Message</label>
                                 <textarea id="message" placeholder="How can we help?" data-i18n-placeholder="phMessage"></textarea>
                             </div>
-                            <button type="submit" class="btn-submit" data-i18n="contactSend">Send Message</button>
+                            <button type="submit" class="btn-submit" data-i18n="contactSend" disabled aria-disabled="true" title="Not connected yet">Send Message</button>
                         </form>
                     </div>
                 </div>
