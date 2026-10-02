@@ -1,24 +1,35 @@
 # =============================================================================
-# CIFHF website — Cloudflare Pages configuration TEMPLATE
+# CIFHF website — Cloudflare Pages configuration REFERENCE (.template)
 #
-# This file is a TEMPLATE. No secrets, no real domain, no real email address
-# live in it. It has NO effect by existing in this repo — it only does
-# anything once someone runs `wrangler pages deploy` (or connects this repo
-# through the Cloudflare dashboard), and that hasn't happened: this stage
-# wrote code and config only, nothing was pushed or deployed.
+# *** THIS FILE IS NOT LIVE CONFIG. IT MUST STAY NAMED *.template. ***
+# Pages reads an actual root-level `wrangler.toml` on every deploy. The
+# real Cloudflare Pages project ("cifhf-demo", already created, already
+# connected to this GitHub repo, production branch `master`) is configured
+# directly in the Cloudflare dashboard. If a real `wrangler.toml` is ever
+# added back at the repo root, Pages will treat it as authoritative on the
+# next deploy — its [vars] would overwrite/lock whatever is set in the
+# dashboard, and `name` would need to exactly match "cifhf-demo" or Pages
+# may refuse the deploy or create a second project. Rename a copy of this
+# file only with eyes open to that, and only once every PETER/MELANIE
+# DECIDES item below is actually settled.
+#
+# No secrets, no real domain, no real email address live in this file —
+# it's reference only, kept in the repo so the dashboard settings below
+# are documented somewhere version-controlled.
 #
 # Three things here are PETER/MELANIE DECIDES, not Ember's call:
-#   1. Which domain the site lives on (a real domain on Cloudflare, or stay
-#      on GitHub Pages for now — in which case leave the send_email section
-#      commented out; the contact form correctly shows "not connected yet"
-#      either way).
+#   1. Which domain the site lives on (already on Cloudflare Pages at
+#      cifhf-demo.pages.dev; a custom domain is still open) — and either
+#      way, leave the send_email section below commented out until it's
+#      actually wired up; the contact form correctly shows "not connected
+#      yet" until then.
 #   2. The real recipient address for CONTACT_TO.
 #   3. Whether to enable Turnstile (an extra spam check) — optional.
 #
 # See DEPLOY_CONTACT.md at the repo root for the step-by-step checklist.
 # =============================================================================
 
-name = "cifhf-website"                 # PETER/MELANIE DECIDES: the Cloudflare Pages project name
+name = "cifhf-demo"                    # the real Cloudflare Pages project name — already created, already connected to this repo
 pages_build_output_dir = "."           # the site is static HTML at the repo root — no build step
 
 compatibility_date = "2026-10-02"      # bump only if a newer Functions runtime feature is needed
@@ -44,10 +55,10 @@ compatibility_date = "2026-10-02"      # bump only if a newer Functions runtime 
 # -----------------------------------------------------------------------------
 # Environment variables consumed by functions/api/contact.js.
 #
-# Prefer setting the REAL values as "Environment variables" in the
-# Cloudflare Pages dashboard (Settings -> Environment variables) instead of
-# writing a real address into this file — this file is meant to be safe to
-# have sitting in the repo even before hosting is decided.
+# Set the REAL values as "Environment variables" in the Cloudflare Pages
+# dashboard (cifhf-demo project -> Settings -> Environment variables), not
+# here. This file stays a .template specifically so these placeholders
+# never become the live config and never lock out the dashboard values.
 # -----------------------------------------------------------------------------
 
 [vars]
