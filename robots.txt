@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO (real domain): this Sitemap line uses the GitHub Pages demo URL as a
+# placeholder. Swap for the live domain's sitemap.xml once one is assigned.
+Sitemap: https://theaviatorman1624.github.io/cifhf-demo/sitemap.xml

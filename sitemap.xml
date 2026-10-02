@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TODO (real domain): the <loc> below uses the GitHub Pages demo URL as a
+  placeholder. Swap for the live domain once one is assigned.
+
+  Only one <url> entry: this is a single-page SPA (navigateTo() swaps which
+  .page is visible but never changes document.title, the path, or pushes
+  history for About/Objectives/Members/Executive/Impact/News/Contact), so
+  there is only one real crawlable URL today. Per stage-1a review finding #6,
+  giving each section its own indexable URL needs a routing retrofit
+  (hash routes that each set document.title, at minimum) -- that's a
+  decision for Phase 2/3 planning, not this pass. Once that exists, add one
+  <url> entry per route here.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://theaviatorman1624.github.io/cifhf-demo/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+</urlset>
