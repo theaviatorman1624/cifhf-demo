@@ -1,0 +1,60 @@
+# =============================================================================
+# CIFHF website — Cloudflare Pages configuration TEMPLATE
+#
+# This file is a TEMPLATE. No secrets, no real domain, no real email address
+# live in it. It has NO effect by existing in this repo — it only does
+# anything once someone runs `wrangler pages deploy` (or connects this repo
+# through the Cloudflare dashboard), and that hasn't happened: this stage
+# wrote code and config only, nothing was pushed or deployed.
+#
+# Three things here are PETER/MELANIE DECIDES, not Ember's call:
+#   1. Which domain the site lives on (a real domain on Cloudflare, or stay
+#      on GitHub Pages for now — in which case leave the send_email section
+#      commented out; the contact form correctly shows "not connected yet"
+#      either way).
+#   2. The real recipient address for CONTACT_TO.
+#   3. Whether to enable Turnstile (an extra spam check) — optional.
+#
+# See DEPLOY_CONTACT.md at the repo root for the step-by-step checklist.
+# =============================================================================
+
+name = "cifhf-website"                 # PETER/MELANIE DECIDES: the Cloudflare Pages project name
+pages_build_output_dir = "."           # the site is static HTML at the repo root — no build step
+
+compatibility_date = "2026-10-02"      # bump only if a newer Functions runtime feature is needed
+
+# -----------------------------------------------------------------------------
+# Email Workers `send_email` binding — lets functions/api/contact.js send
+# mail with no third-party email service. Requires, in order:
+#   1. The chosen domain is added to Cloudflare (nameservers pointed there).
+#   2. Email Routing is turned on for that domain (Cloudflare dashboard ->
+#      the domain -> Email -> Email Routing).
+#   3. The destination address below is VERIFIED — Cloudflare sends a
+#      one-time confirmation email to it that someone must click.
+#
+# Until all three are true, leave this block commented out. The contact
+# form will correctly keep showing "not connected yet" rather than claim
+# a success it can't deliver.
+# -----------------------------------------------------------------------------
+
+# [[send_email]]
+# name = "SEND_EMAIL"
+# destination_address = "PLACEHOLDER_MELANIE_DECIDES@example.org"   # must match the verified Email Routing destination
+
+# -----------------------------------------------------------------------------
+# Environment variables consumed by functions/api/contact.js.
+#
+# Prefer setting the REAL values as "Environment variables" in the
+# Cloudflare Pages dashboard (Settings -> Environment variables) instead of
+# writing a real address into this file — this file is meant to be safe to
+# have sitting in the repo even before hosting is decided.
+# -----------------------------------------------------------------------------
+
+[vars]
+CONTACT_TO = "PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE"   # PETER/MELANIE DECIDES — the real recipient inbox
+SEND_FROM  = "PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE"   # must be an address on the domain once it's on Cloudflare
+
+# Optional spam gate. Leave commented out to keep Turnstile disabled — the
+# honeypot field and minimum-fill-time check in contact.js still apply
+# either way, with or without this.
+# TURNSTILE_SECRET_KEY = "PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE"
