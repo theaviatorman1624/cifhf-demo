@@ -1821,12 +1821,36 @@
             document.documentElement.lang = lang;
         }
 
+        // ===== Language persistence (localStorage, wrapped so a blocked/disabled
+        // store never breaks the toggle -- it just won't survive a reload) =====
+        const LANG_STORAGE_KEY = 'cifhf_lang';
+        function getStoredLang() {
+            try { return localStorage.getItem(LANG_STORAGE_KEY); } catch (e) { return null; }
+        }
+        function setStoredLang(lang) {
+            try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) {}
+        }
+
         document.querySelectorAll('.lang-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
                 isEN = !isEN;
-                applyLang(isEN ? 'en' : 'fr');
+                const lang = isEN ? 'en' : 'fr';
+                applyLang(lang);
+                setStoredLang(lang);
             });
         });
+
+        // Restore the visitor's last chosen language on load (falls back to the
+        // English already in the DOM if nothing is stored or storage is blocked).
+        (function initLang() {
+            const stored = getStoredLang();
+            if (stored === 'fr' || stored === 'en') {
+                isEN = stored === 'en';
+                applyLang(stored);
+            } else {
+                document.documentElement.lang = 'en';
+            }
+        })();
 
         // Read More: prevent jump-to-top (full articles coming soon)
         document.querySelectorAll('.news-read-more').forEach(link => {
