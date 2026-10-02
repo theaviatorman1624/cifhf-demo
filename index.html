@@ -1548,6 +1548,7 @@
                     el.classList.remove('visible');
                     observer.observe(el);
                 });
+                armFadeInFallback();
             }, 50);
 
             // Support deep-linking: keep the URL hash in sync without re-triggering navigation
@@ -1582,12 +1583,33 @@
         }
 
         // ===== Fade-in Observer =====
+        // threshold 0 + a generous positive bottom rootMargin means content is
+        // marked visible as soon as it's within reach of the viewport (not only
+        // once it has actually scrolled in), which is kinder to real scrolling
+        // than the old 0.1/-50px setup.
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0, rootMargin: '0px 0px 600px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Fallback safety net: under default motion settings, below-the-fold
+        // .fade-in content must never be stuck at opacity 0 -- whether because a
+        // full-page capture tool never dispatches real scroll/resize events for
+        // the observer to react to, a crawler doesn't run it at all, or the
+        // callback simply hasn't fired yet. A short timer force-reveals anything
+        // still hidden in the active page, independent of scroll state. Normal
+        // visitors scrolling at a normal pace will see the regular reveal first;
+        // this only kicks in as a backstop.
+        function armFadeInFallback() {
+            setTimeout(() => {
+                document.querySelectorAll('.page.active .fade-in:not(.visible)').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 1200);
+        }
+        armFadeInFallback();
 
         // ===== Set Home active by default =====
         document.querySelector('.nav-links a[data-page="home"]').classList.add('active');
