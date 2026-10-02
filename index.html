@@ -2019,14 +2019,18 @@
                     : key === 'contactFormError' ? 'form-status form-status-error' : '';
             }
 
-            // Cheap reachability check: OPTIONS the endpoint. A deployed Pages
-            // Function (even POST-only) answers something other than 404; a
-            // site still on GitHub Pages (or any host with no function there)
-            // 404s, and a network failure throws -- both read as "not ready".
+            // Cheap reachability check: OPTIONS the endpoint. The deployed
+            // function's own onRequestOptions answers exactly 204 -- that's
+            // the one status we treat as "reachable". Anything else reads as
+            // "not ready": GitHub Pages 404s on unknown paths; a plain dev
+            // server (e.g. `python3 -m http.server`) answers unimplemented
+            // methods with 501, not 404 -- so this checks for the function's
+            // specific signal rather than merely ruling out 404; a network
+            // failure throws and is caught the same way.
             async function endpointReachable() {
                 try {
                     const res = await fetch('/api/contact', { method: 'OPTIONS', cache: 'no-store' });
-                    return res.status !== 404;
+                    return res.status === 204;
                 } catch (e) {
                     return false;
                 }

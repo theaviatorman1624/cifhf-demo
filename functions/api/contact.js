@@ -216,9 +216,12 @@ export async function onRequestPost(context) {
   return jsonResponse(body, status);
 }
 
-// Answering OPTIONS with something other than a 404 lets the frontend's
-// cheap reachability check (functions/../index.html) tell "deployed,
-// POST-only" apart from "no function here at all" (still on GitHub Pages).
+// Answering OPTIONS with exactly 204 gives the frontend's reachability
+// check (index.html's endpointReachable()) a specific, deterministic
+// signal for "this function is deployed" -- deliberately not just "not a
+// 404", since some static/dev servers (e.g. Python's http.server) answer
+// unimplemented methods with 501 rather than 404, which would otherwise
+// read as a false "reachable".
 export async function onRequestOptions() {
   return new Response(null, { status: 204, headers: { Allow: 'POST, OPTIONS' } });
 }
