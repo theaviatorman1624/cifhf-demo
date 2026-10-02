@@ -1016,7 +1016,7 @@
                     <div class="province-card fade-in">
                         <div class="province-header">
                             <div class="province-icon">&#127754;</div>
-                            <h3>British Columbia</h3>
+                            <h3 data-i18n="provBC">British Columbia</h3>
                             <span class="count" data-i18n="bc4">4 members</span>
                         </div>
                         <div class="province-members">
@@ -1031,7 +1031,7 @@
                     <div class="province-card fade-in fade-in-delay-1">
                         <div class="province-header">
                             <div class="province-icon">&#9875;</div>
-                            <h3>New Brunswick</h3>
+                            <h3 data-i18n="provNB">New Brunswick</h3>
                             <span class="count" data-i18n="nb4">4 members</span>
                         </div>
                         <div class="province-members">
@@ -1061,7 +1061,7 @@
                     <div class="province-card fade-in fade-in-delay-2">
                         <div class="province-header">
                             <div class="province-icon">&#127907;</div>
-                            <h3>Newfoundland &amp; Labrador</h3>
+                            <h3 data-i18n="provNL">Newfoundland &amp; Labrador</h3>
                             <span class="count" data-i18n="nl1">1 member</span>
                         </div>
                         <div class="province-members">
@@ -1077,7 +1077,7 @@
                     <div class="province-card fade-in">
                         <div class="province-header">
                             <div class="province-icon">&#128674;</div>
-                            <h3>Nova Scotia</h3>
+                            <h3 data-i18n="provNS">Nova Scotia</h3>
                             <span class="count" data-i18n="ns8">8 members</span>
                         </div>
                         <div class="province-members">
@@ -1108,7 +1108,7 @@
                     <div class="province-card fade-in fade-in-delay-1">
                         <div class="province-header">
                             <div class="province-icon">&#127965;</div>
-                            <h3>Prince Edward Island</h3>
+                            <h3 data-i18n="provPEI">Prince Edward Island</h3>
                             <span class="count" data-i18n="pei1">1 member</span>
                         </div>
                         <div class="province-members">
@@ -1120,7 +1120,7 @@
                     <div class="province-card fade-in fade-in-delay-2">
                         <div class="province-header">
                             <div class="province-icon">&#9881;</div>
-                            <h3>Qu&eacute;bec</h3>
+                            <h3 data-i18n="provQC">Qu&eacute;bec</h3>
                             <span class="count" data-i18n="qc6">6 members</span>
                         </div>
                         <div class="province-members">
@@ -1407,16 +1407,16 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="fname" data-i18n="contactFName">First Name</label>
-                                    <input type="text" id="fname" placeholder="Your first name">
+                                    <input type="text" id="fname" placeholder="Your first name" data-i18n-placeholder="phFirstName">
                                 </div>
                                 <div class="form-group">
                                     <label for="lname" data-i18n="contactLName">Last Name</label>
-                                    <input type="text" id="lname" placeholder="Your last name">
+                                    <input type="text" id="lname" placeholder="Your last name" data-i18n-placeholder="phLastName">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" data-i18n="contactEmail">Email Address</label>
-                                <input type="email" id="email" placeholder="you@example.com">
+                                <input type="email" id="email" placeholder="you@example.com" data-i18n-placeholder="phEmail">
                             </div>
                             <div class="form-group">
                                 <label for="subject" data-i18n="contactSubject">Subject</label>
@@ -1431,7 +1431,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="message" data-i18n="contactMsg">Message</label>
-                                <textarea id="message" placeholder="How can we help?"></textarea>
+                                <textarea id="message" placeholder="How can we help?" data-i18n-placeholder="phMessage"></textarea>
                             </div>
                             <button type="submit" class="btn-submit" data-i18n="contactSend">Send Message</button>
                         </form>
@@ -1461,7 +1461,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Canadian Independent Fish Harvesters Federation / F&eacute;d&eacute;ration canadienne des p&ecirc;cheurs ind&eacute;pendants. <span data-i18n="footerRights">All rights reserved.</span></p>
-            <p style="margin-top:6px;opacity:0.5;font-size:11px;">Built by <a href="#">The Ember Company</a></p>
+            <p style="margin-top:6px;opacity:0.5;font-size:11px;"><span data-i18n="footerBuiltByPrefix">Built by</span> <a href="#">The Ember Company</a></p>
         </div>
     </footer>
 
@@ -1587,6 +1587,9 @@
                 membersBadge: 'Coast to Coast',
                 membersHeroTitle: 'Member Organizations of the<br><em>Canadian Independent Fish Harvesters Federation</em>',
                 membersHeroSub: 'Our federation unites fishing associations from across Canada, each representing the independent harvesters of their region.',
+                provBC: 'British Columbia', provNB: 'New Brunswick', provNL: 'Newfoundland & Labrador',
+                provNS: 'Nova Scotia', provPEI: 'Prince Edward Island', provQC: 'Québec',
+                bc4: '4 members', nb4: '4 members', nl1: '1 member', ns8: '8 members', pei1: '1 member', qc6: '6 members',
                 execBadge: 'Leadership',
                 execHeroTitle: 'Meet Our Members of the<br><em>Canadian Independent Fish Harvesters Federation</em>',
                 execHeroSub: 'The dedicated leaders who represent independent fish harvesters at the national level.',
@@ -1633,12 +1636,15 @@
                 contactBadge: 'Get In Touch',
                 contactHeroTitle: 'Contact the<br><em>Canadian Independent Fish Harvesters Federation</em>',
                 contactHeroSub: 'Whether you are a member organization, prospective member, or stakeholder, we welcome your inquiry.',
-                contactOffice: 'Federation Office', contactAddrH: 'Address', contactEmailH: 'Email', contactWebH: 'Website',
+                contactOffice: 'Federation Office', contactAddrH: 'Address', contactPhoneH: 'Phone', contactEmailH: 'Email', contactWebH: 'Website',
                 contactFormH: 'Send Us a Message', contactFName: 'First Name', contactLName: 'Last Name',
                 contactEmail: 'Email Address', contactSubject: 'Subject', contactMsg: 'Message', contactSend: 'Send Message',
                 contactSubOpt0: 'Select a topic...', contactSubOpt1: 'Membership Inquiry', contactSubOpt2: 'Policy & Advocacy',
                 contactSubOpt3: 'Media & Press', contactSubOpt4: 'Partnership Opportunity', contactSubOpt5: 'General Question',
+                phFirstName: 'Your first name', phLastName: 'Your last name', phEmail: 'you@example.com', phMessage: 'How can we help?',
+                contactFormNote: 'This form isn’t connected to an inbox yet — we’re working on it. Thank you for your patience.',
                 footerRights: 'All rights reserved.',
+                footerBuiltByPrefix: 'Built by',
                 bannerTitle: 'Canada\'s Fishing Fleet at Work',
                 bannerSub: 'From before dawn to after dark, independent harvesters sustain their families and communities on every coast.',
                 galleryLabel: 'From the Water',
@@ -1715,6 +1721,9 @@
                 membersBadge: 'D\u2019un oc\u00e9an \u00e0 l\u2019autre',
                 membersHeroTitle: 'Organisations membres de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
                 membersHeroSub: 'Notre f\u00e9d\u00e9ration unit les associations de p\u00eache de partout au Canada.',
+                provBC: 'Colombie-Britannique', provNB: 'Nouveau-Brunswick', provNL: 'Terre-Neuve-et-Labrador',
+                provNS: 'Nouvelle-\u00c9cosse', provPEI: '\u00cele-du-Prince-\u00c9douard', provQC: 'Qu\u00e9bec',
+                bc4: '4 membres', nb4: '4 membres', nl1: '1 membre', ns8: '8 membres', pei1: '1 membre', qc6: '6 membres',
                 execBadge: 'Direction',
                 execHeroTitle: 'Rencontrez nos membres de la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
                 execHeroSub: 'Les dirigeants d\u00e9vou\u00e9s qui repr\u00e9sentent les p\u00eacheurs ind\u00e9pendants au niveau national.',
@@ -1761,12 +1770,15 @@
                 contactBadge: 'Contactez-Nous',
                 contactHeroTitle: 'Contacter la<br><em>F\u00e9d\u00e9ration canadienne des p\u00eacheurs ind\u00e9pendants</em>',
                 contactHeroSub: 'Que vous soyez une organisation membre, un membre potentiel ou un intervenant, nous accueillons votre demande.',
-                contactOffice: 'Bureau de la F\u00e9d\u00e9ration', contactAddrH: 'Adresse', contactEmailH: 'Courriel', contactWebH: 'Site web',
+                contactOffice: 'Bureau de la F\u00e9d\u00e9ration', contactAddrH: 'Adresse', contactPhoneH: 'T\u00e9l\u00e9phone', contactEmailH: 'Courriel', contactWebH: 'Site web',
                 contactFormH: 'Envoyez-nous un message', contactFName: 'Pr\u00e9nom', contactLName: 'Nom de famille',
                 contactEmail: 'Adresse courriel', contactSubject: 'Sujet', contactMsg: 'Message', contactSend: 'Envoyer le message',
                 contactSubOpt0: 'S\u00e9lectionnez un sujet...', contactSubOpt1: 'Demande d\u2019adh\u00e9sion', contactSubOpt2: 'Politique et plaidoyer',
                 contactSubOpt3: 'M\u00e9dias et presse', contactSubOpt4: 'Opportunit\u00e9 de partenariat', contactSubOpt5: 'Question g\u00e9n\u00e9rale',
+                phFirstName: 'Votre pr\u00e9nom', phLastName: 'Votre nom de famille', phEmail: 'vous@exemple.com', phMessage: 'Comment pouvons-nous vous aider?',
+                contactFormNote: 'Ce formulaire n\u2019est pas encore reli\u00e9 \u00e0 une bo\u00eete de r\u00e9ception \u2014 nous y travaillons. Merci de votre patience.',
                 footerRights: 'Tous droits r\u00e9serv\u00e9s.',
+                footerBuiltByPrefix: 'D\u00e9velopp\u00e9 par',
                 bannerTitle: 'La flotte de p\u00eache du Canada au travail',
                 bannerSub: 'De l\u2019aube au cr\u00e9puscule, les p\u00eacheurs ind\u00e9pendants soutiennent leurs familles et communaut\u00e9s sur chaque c\u00f4te.',
                 galleryLabel: 'Depuis les eaux',
@@ -1798,6 +1810,10 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key] !== undefined) el.setAttribute('placeholder', t[key]);
             });
             document.querySelectorAll('.lang-toggle').forEach(b => {
                 b.textContent = lang === 'en' ? 'EN | FR' : 'FR | EN';
