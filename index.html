@@ -1551,11 +1551,26 @@
                 armFadeInFallback();
             }, 50);
 
-            // Support deep-linking: keep the URL hash in sync without re-triggering navigation
+            // Support deep-linking and Back/Forward: push a new history entry for a
+            // normal navigation (nav click, hero/footer CTA). skipHashUpdate is true
+            // only when we're rendering IN RESPONSE to something that already changed
+            // the URL/history -- the initial #page deep link on load, and popstate --
+            // so we don't push a duplicate or redundant entry in those cases.
             if (!skipHashUpdate) {
-                try { history.replaceState(null, '', '#' + page); } catch (e) {}
+                try { history.pushState({ page: page }, '', '#' + page); } catch (e) {}
             }
         }
+
+        // Back/Forward: re-render whichever page the history entry points to,
+        // without pushing another entry (that would fight the browser's own
+        // back/forward stack).
+        window.addEventListener('popstate', (event) => {
+            const fromState = event.state && event.state.page;
+            const fromHash = (window.location.hash || '').replace('#', '');
+            const page = (fromState && VALID_PAGES.indexOf(fromState) !== -1) ? fromState
+                : (VALID_PAGES.indexOf(fromHash) !== -1 ? fromHash : 'home');
+            navigateTo(page, true);
+        });
 
         // ===== Scroll Header Shadow =====
         const siteHeader = document.getElementById('siteHeader');
