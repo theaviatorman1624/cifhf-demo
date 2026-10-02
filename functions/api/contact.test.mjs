@@ -12,7 +12,10 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { processContact, onRequestPost, isValidEmail, clean, buildRawEmail } from './contact.js';
+import {
+  processContact, onRequestPost, onRequestOptions,
+  isValidEmail, clean, buildRawEmail, isPlaceholder, isSendConfigured,
+} from './contact.js';
 
 function baseEnv(overrides = {}) {
   return {
@@ -198,4 +201,64 @@ test('onRequestPost: honeypot filled -> 400 via the real HTTP path', async () =>
   const data = await res.json();
   assert.equal(data.ok, false);
   assert.equal(data.reason, 'rejected');
+});
+
+// ---- isPlaceholder / isSendConfigured ----
+
+test('isPlaceholder flags anything starting with PLACEHOLDER', () => {
+  assert.equal(isPlaceholder('PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE'), true);
+  assert.equal(isPlaceholder('president@example.org'), false);
+  assert.equal(isPlaceholder(''), false);
+  assert.equal(isPlaceholder(undefined), false);
+});
+
+test('isSendConfigured: true only when binding + both real vars are present', () => {
+  assert.equal(isSendConfigured(baseEnv()), true);
+  assert.equal(isSendConfigured(baseEnv({ SEND_EMAIL: undefined })), false);
+  assert.equal(isSendConfigured(baseEnv({ CONTACT_TO: undefined })), false);
+  assert.equal(isSendConfigured(baseEnv({ SEND_FROM: undefined })), false);
+  assert.equal(isSendConfigured(baseEnv({ CONTACT_TO: 'PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE' })), false);
+  assert.equal(isSendConfigured(baseEnv({ SEND_FROM: 'PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE' })), false);
+  assert.equal(isSendConfigured(undefined), false);
+});
+
+// ---- onRequestOptions: the reachability-check gate ----
+// This is the 1c.2 fix: a deployed-but-unconfigured function (e.g. on
+// cifhf-demo.pages.dev before Melanie's domain/recipient decision) must
+// answer something other than 204, or the frontend would enable a Send
+// button that always fails with not_configured.
+
+test('onRequestOptions: fully configured -> 204', async () => {
+  const res = await onRequestOptions({ env: baseEnv() });
+  assert.equal(res.status, 204);
+});
+
+test('onRequestOptions: no env at all (e.g. still on GitHub Pages logic path) -> 503', async () => {
+  const res = await onRequestOptions({ env: undefined });
+  assert.equal(res.status, 503);
+});
+
+test('onRequestOptions: SEND_EMAIL binding missing -> 503', async () => {
+  const res = await onRequestOptions({ env: baseEnv({ SEND_EMAIL: undefined }) });
+  assert.equal(res.status, 503);
+});
+
+test('onRequestOptions: CONTACT_TO missing -> 503', async () => {
+  const res = await onRequestOptions({ env: baseEnv({ CONTACT_TO: undefined }) });
+  assert.equal(res.status, 503);
+});
+
+test('onRequestOptions: SEND_FROM missing -> 503', async () => {
+  const res = await onRequestOptions({ env: baseEnv({ SEND_FROM: undefined }) });
+  assert.equal(res.status, 503);
+});
+
+test('onRequestOptions: CONTACT_TO is a placeholder value -> 503', async () => {
+  const res = await onRequestOptions({ env: baseEnv({ CONTACT_TO: 'PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE' }) });
+  assert.equal(res.status, 503);
+});
+
+test('onRequestOptions: SEND_FROM is a placeholder value -> 503', async () => {
+  const res = await onRequestOptions({ env: baseEnv({ SEND_FROM: 'PLACEHOLDER_SET_IN_DASHBOARD_NOT_HERE' }) });
+  assert.equal(res.status, 503);
 });

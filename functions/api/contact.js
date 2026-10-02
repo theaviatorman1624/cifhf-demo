@@ -51,6 +51,28 @@ export function escapeHtml(str) {
   }[c]));
 }
 
+// A value that still starts with "PLACEHOLDER" (see wrangler.toml.template)
+// is treated as unset -- a reference project could otherwise get copied
+// with its placeholder [vars] intact and look "configured" when it isn't.
+export function isPlaceholder(value) {
+  return typeof value === 'string' && value.startsWith('PLACEHOLDER');
+}
+
+// True only when the send path can actually be used: the send_email
+// binding exists, and both CONTACT_TO and SEND_FROM are set to real
+// (non-placeholder) values. Used both to gate the reachability check
+// (onRequestOptions) and the actual send attempt (processContact), so the
+// two can never disagree about whether the form is "on".
+export function isSendConfigured(env) {
+  if (!env) return false;
+  if (!env.SEND_EMAIL) return false;
+  const to = env.CONTACT_TO;
+  const from = env.SEND_FROM;
+  if (!to || isPlaceholder(to)) return false;
+  if (!from || isPlaceholder(from)) return false;
+  return true;
+}
+
 // Builds a minimal, dependency-free RFC 822 raw message (text + HTML
 // multipart/alternative). No npm package required — EmailMessage just needs
 // a valid raw message string; a helper library like `mimetext` is a
@@ -153,15 +175,14 @@ export async function processContact(data, env, { sendEmail = defaultSendEmail, 
     return { ok: false, reason: 'invalid_email', status: 400 };
   }
 
-  // --- Configuration: recipient + sender are env vars, never hardcoded. ---
-  const to = env && env.CONTACT_TO;
-  const from = env && env.SEND_FROM;
-  if (!to || !from) {
+  // --- Configuration: recipient + sender are env vars, never hardcoded,
+  // and a placeholder value (e.g. copied from wrangler.toml.template)
+  // counts as unset, not configured. ---
+  if (!isSendConfigured(env)) {
     return { ok: false, reason: 'not_configured', status: 500 };
   }
-  if (!env.SEND_EMAIL) {
-    return { ok: false, reason: 'not_configured', status: 500 };
-  }
+  const to = env.CONTACT_TO;
+  const from = env.SEND_FROM;
 
   const text =
     `New message from the CIFHF website contact form\n\n` +
@@ -218,10 +239,23 @@ export async function onRequestPost(context) {
 
 // Answering OPTIONS with exactly 204 gives the frontend's reachability
 // check (index.html's endpointReachable()) a specific, deterministic
-// signal for "this function is deployed" -- deliberately not just "not a
-// 404", since some static/dev servers (e.g. Python's http.server) answer
-// unimplemented methods with 501 rather than 404, which would otherwise
-// read as a false "reachable".
-export async function onRequestOptions() {
-  return new Response(null, { status: 204, headers: { Allow: 'POST, OPTIONS' } });
+// signal for "this function is deployed AND the send path actually
+// works" -- deliberately not just "not a 404" (some static/dev servers,
+// e.g. Python's http.server, answer unimplemented methods with 501
+// rather than 404) and deliberately not just "this function exists"
+// either: the function can be deployed (e.g. on cifhf-demo.pages.dev)
+// before CONTACT_TO/SEND_FROM/the send_email binding are set up, since
+// those wait on Melanie's domain/recipient decision. Returning 204 in
+// that half-configured state would enable the Send button only to have
+// every real submission fail with not_configured -- so this checks
+// isSendConfigured() the same way processContact() does, and answers 503
+// (Service Unavailable) rather than 204 until it's genuinely ready. The
+// frontend then correctly keeps showing the honest "not connected yet"
+// note instead of a button that always fails.
+export async function onRequestOptions(context) {
+  const env = context && context.env;
+  if (isSendConfigured(env)) {
+    return new Response(null, { status: 204, headers: { Allow: 'POST, OPTIONS' } });
+  }
+  return new Response(null, { status: 503, headers: { Allow: 'POST, OPTIONS' } });
 }
