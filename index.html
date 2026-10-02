@@ -121,6 +121,15 @@
         .mobile-menu a:hover { color: #222; }
         .mobile-actions { display: none; }
 
+        /* ===== SKIP LINK ===== */
+        .skip-link {
+            position: absolute; left: -9999px; top: 0;
+            background: #fff; color: #222; padding: 12px 20px;
+            z-index: 2000; font-weight: 700; text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-link:focus { left: 0; }
+
         /* ===== PAGE SECTIONS ===== */
         .page { display: none; }
         .page.active { display: block; }
@@ -629,6 +638,8 @@
 </head>
 <body>
 
+    <a href="#main-content" class="skip-link" data-i18n="skipToContent">Skip to main content</a>
+
     <!-- Site Header: Utility Bar + Logo Area + Nav Bar -->
     <header class="site-header" id="siteHeader">
         <!-- 1. Utility bar — dark, thin, language toggle right-aligned -->
@@ -647,14 +658,14 @@
         <nav class="nav" id="nav">
             <div class="nav-inner">
                 <ul class="nav-links" id="navLinks">
-                    <li><a onclick="navigateTo('home')" data-page="home" data-i18n="navHome">Home</a></li>
-                    <li><a onclick="navigateTo('about')" data-page="about" data-i18n="navAbout">About Us</a></li>
-                    <li><a onclick="navigateTo('objectives')" data-page="objectives" data-i18n="navObjectives">Objectives</a></li>
-                    <li><a onclick="navigateTo('members')" data-page="members" data-i18n="navMembers">Our Members</a></li>
-                    <li><a onclick="navigateTo('executive')" data-page="executive" data-i18n="navExec">Meet Our Members</a></li>
-                    <li><a onclick="navigateTo('impact')" data-page="impact" data-i18n="navImpact">Impact</a></li>
-                    <li><a onclick="navigateTo('news')" data-page="news" data-i18n="navNews">News</a></li>
-                    <li><a onclick="navigateTo('contact')" data-page="contact" data-i18n="navContact">Contact</a></li>
+                    <li><a href="#home" onclick="navigateTo('home'); return false;" data-page="home" data-i18n="navHome">Home</a></li>
+                    <li><a href="#about" onclick="navigateTo('about'); return false;" data-page="about" data-i18n="navAbout">About Us</a></li>
+                    <li><a href="#objectives" onclick="navigateTo('objectives'); return false;" data-page="objectives" data-i18n="navObjectives">Objectives</a></li>
+                    <li><a href="#members" onclick="navigateTo('members'); return false;" data-page="members" data-i18n="navMembers">Our Members</a></li>
+                    <li><a href="#executive" onclick="navigateTo('executive'); return false;" data-page="executive" data-i18n="navExec">Meet Our Members</a></li>
+                    <li><a href="#impact" onclick="navigateTo('impact'); return false;" data-page="impact" data-i18n="navImpact">Impact</a></li>
+                    <li><a href="#news" onclick="navigateTo('news'); return false;" data-page="news" data-i18n="navNews">News</a></li>
+                    <li><a href="#contact" onclick="navigateTo('contact'); return false;" data-page="contact" data-i18n="navContact">Contact</a></li>
                 </ul>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
@@ -664,20 +675,21 @@
     </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a onclick="navigateTo('home'); closeMobile();" data-i18n="navHome">Home</a>
-        <a onclick="navigateTo('about'); closeMobile();" data-i18n="navAbout">About Us</a>
-        <a onclick="navigateTo('objectives'); closeMobile();" data-i18n="navObjectives">Objectives</a>
-        <a onclick="navigateTo('members'); closeMobile();" data-i18n="navMembers">Our Members</a>
-        <a onclick="navigateTo('executive'); closeMobile();" data-i18n="navExec">Meet Our Members</a>
-        <a onclick="navigateTo('impact'); closeMobile();" data-i18n="navImpact">Impact</a>
-        <a onclick="navigateTo('news'); closeMobile();" data-i18n="navNews">News</a>
-        <a onclick="navigateTo('contact'); closeMobile();" data-i18n="navContact">Contact</a>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
+        <a href="#home" onclick="navigateTo('home'); closeMobile(); return false;" data-i18n="navHome">Home</a>
+        <a href="#about" onclick="navigateTo('about'); closeMobile(); return false;" data-i18n="navAbout">About Us</a>
+        <a href="#objectives" onclick="navigateTo('objectives'); closeMobile(); return false;" data-i18n="navObjectives">Objectives</a>
+        <a href="#members" onclick="navigateTo('members'); closeMobile(); return false;" data-i18n="navMembers">Our Members</a>
+        <a href="#executive" onclick="navigateTo('executive'); closeMobile(); return false;" data-i18n="navExec">Meet Our Members</a>
+        <a href="#impact" onclick="navigateTo('impact'); closeMobile(); return false;" data-i18n="navImpact">Impact</a>
+        <a href="#news" onclick="navigateTo('news'); closeMobile(); return false;" data-i18n="navNews">News</a>
+        <a href="#contact" onclick="navigateTo('contact'); closeMobile(); return false;" data-i18n="navContact">Contact</a>
         <div class="mobile-actions">
             <button class="lang-toggle" id="langToggleMobile">EN | FR</button>
         </div>
     </div>
 
+    <main id="main-content" tabindex="-1">
     <!-- ==================== HOME ==================== -->
     <div class="page active" id="page-home">
         <section class="hero hero-with-photo">
@@ -1428,6 +1440,7 @@
             </div>
         </section>
     </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1436,14 +1449,14 @@
                 <img src="logo-footer-white.png" alt="Canadian Independent Fish Harvesters Federation">
             </div>
             <ul class="footer-links">
-                <li><a onclick="navigateTo('home')" data-i18n="navHome">Home</a></li>
-                <li><a onclick="navigateTo('about')" data-i18n="navAbout">About Us</a></li>
-                <li><a onclick="navigateTo('objectives')" data-i18n="navObjectives">Objectives</a></li>
-                <li><a onclick="navigateTo('members')" data-i18n="navMembers">Our Members</a></li>
-                <li><a onclick="navigateTo('executive')" data-i18n="navExec">Meet Our Members</a></li>
-                <li><a onclick="navigateTo('impact')" data-i18n="navImpact">Impact</a></li>
-                <li><a onclick="navigateTo('news')" data-i18n="navNews">News</a></li>
-                <li><a onclick="navigateTo('contact')" data-i18n="navContact">Contact</a></li>
+                <li><a href="#home" onclick="navigateTo('home'); return false;" data-i18n="navHome">Home</a></li>
+                <li><a href="#about" onclick="navigateTo('about'); return false;" data-i18n="navAbout">About Us</a></li>
+                <li><a href="#objectives" onclick="navigateTo('objectives'); return false;" data-i18n="navObjectives">Objectives</a></li>
+                <li><a href="#members" onclick="navigateTo('members'); return false;" data-i18n="navMembers">Our Members</a></li>
+                <li><a href="#executive" onclick="navigateTo('executive'); return false;" data-i18n="navExec">Meet Our Members</a></li>
+                <li><a href="#impact" onclick="navigateTo('impact'); return false;" data-i18n="navImpact">Impact</a></li>
+                <li><a href="#news" onclick="navigateTo('news'); return false;" data-i18n="navNews">News</a></li>
+                <li><a href="#contact" onclick="navigateTo('contact'); return false;" data-i18n="navContact">Contact</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
@@ -1454,7 +1467,9 @@
 
     <script>
         // ===== SPA Navigation =====
-        function navigateTo(page) {
+        const VALID_PAGES = ['home', 'about', 'objectives', 'members', 'executive', 'impact', 'news', 'contact'];
+        function navigateTo(page, skipHashUpdate) {
+            if (VALID_PAGES.indexOf(page) === -1) return;
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('page-' + page);
             if (target) target.classList.add('active');
@@ -1467,13 +1482,18 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Re-observe fade-ins on new page
+            // Re-observe fade-ins on new page (also show immediately if JS runs after paint)
             setTimeout(() => {
                 document.querySelectorAll('.page.active .fade-in').forEach(el => {
                     el.classList.remove('visible');
                     observer.observe(el);
                 });
             }, 50);
+
+            // Support deep-linking: keep the URL hash in sync without re-triggering navigation
+            if (!skipHashUpdate) {
+                try { history.replaceState(null, '', '#' + page); } catch (e) {}
+            }
         }
 
         // ===== Scroll Header Shadow =====
@@ -1485,13 +1505,20 @@
         // ===== Mobile Menu =====
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
+        function setMobileMenuOpen(open) {
+            hamburger.classList.toggle('active', open);
+            mobileMenu.classList.toggle('open', open);
+            mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+            // `inert` keeps the closed menu's links out of Tab order and the a11y tree
+            // even though the transform-based hide doesn't remove them visually.
+            if (open) { mobileMenu.removeAttribute('inert'); }
+            else { mobileMenu.setAttribute('inert', ''); }
+        }
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('open');
+            setMobileMenuOpen(!mobileMenu.classList.contains('open'));
         });
         function closeMobile() {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('open');
+            setMobileMenuOpen(false);
         }
 
         // ===== Fade-in Observer =====
@@ -1509,6 +1536,7 @@
         let isEN = true;
         const tr = {
             en: {
+                skipToContent: 'Skip to main content',
                 navHome: 'Home', navAbout: 'About Us', navObjectives: 'Objectives',
                 navMembers: 'Our Members', navExec: 'Meet Our Members', navImpact: 'Impact',
                 navNews: 'News', navContact: 'Contact',
@@ -1636,6 +1664,7 @@
                 bcCaption5: 'The catch, iced and ready for market',
             },
             fr: {
+                skipToContent: 'Passer au contenu principal',
                 navHome: 'Accueil', navAbout: '\u00c0 Propos', navObjectives: 'Objectifs',
                 navMembers: 'Nos Membres', navExec: 'Rencontrez nos membres', navImpact: 'Impact',
                 navNews: 'Actualit\u00e9s', navContact: 'Contact',
@@ -1789,6 +1818,14 @@
                 e.preventDefault();
             });
         });
+
+        // ===== Deep link on load: honour a #page hash (run last, once everything above exists) =====
+        (function initFromHash() {
+            const hash = (window.location.hash || '').replace('#', '');
+            if (hash && hash !== 'home' && VALID_PAGES.indexOf(hash) !== -1) {
+                navigateTo(hash, true);
+            }
+        })();
     </script>
 </body>
 </html>
